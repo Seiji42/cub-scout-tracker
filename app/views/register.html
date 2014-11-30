@@ -36,8 +36,36 @@
             <input type="radio" name="role" value="Leader" ng-click="selectLeader()">Leader
             <input type="radio" name="role" value="Parent" ng-click="selectParent()">Parent
         </div>
-        <p ng-show="$scope.isLeader">Leader chosen</p>
-        <p ng-show="$scope.isParent">Parent chosen</p>
+        <div ng-show="isLeader">
+            <div class="container">
+                <label>Select group: </label>
+                <select name="group">
+                    <option>Wolf</option>
+                    <option>Bear</option>
+                    <option>Webelos</option>
+                </select>
+            </div>
+            <div class="container">
+                <label>Primary Phone Number: </label>
+                <input type="tel" name="leadertel" placeholder="(888)888-8888"></input>
+            </div>
+        </div>
+        <div ng-show="isParent">
+            <div class="container">
+                <h3>Select Your Scouts: </h3>
+                <p><b><u>Wolf</u></b></p>
+                <div ng-repeat="scout in wolfScouts">
+                    <input type="checkbox" name="scout" value="{{scout}}">{{scout}}</input>
+                </div>
+                <p><b><u>Bear</u></b></p>
+                <div ng-repeat="scout in bearScouts">
+                    <input type="checkbox" name="scout" value="{{scout}}">{{scout}}</input>
+                </div>
+                <p><b><u>Webelos</u></b></p>
+                <div ng-repeat="scout in webelosScouts">
+                    <input type="checkbox" name="scout" value="{{scout}}">{{scout}}</input>
+                </div>
+        </div>
     </div>
     <div>
         <button type="button">Submit</button>
