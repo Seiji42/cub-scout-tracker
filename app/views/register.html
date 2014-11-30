@@ -1,0 +1,45 @@
+<form>
+    <div class="header">
+        <h1>User Registration</h1>
+    </div>
+    <div class="container">
+        <label>Username: </label>
+        <input type="text" name="username" placeholder="Username"></input>
+    </div>
+    <div class="container">
+        <label>Password: </label>
+        <input type="password" name="password" placeholder="Password"></input>
+    </div>
+    <div class="container">
+        <label>Confirm Password: </label>
+        <input type="password" name="confirmpass" placeholder="Confirm Password"></input><br>
+    </div>
+    <div class="container">
+        <label>First Name: </label>
+        <input type="text" name="firstname" placeHolder="First"></input>
+    </div>
+    <div class="container">
+        <label>Last Name: </label>
+        <input type="text" name="lastname" placeholder="Last"></input>
+    </div>
+    <div class="container">
+        <label>Email: </label>
+        <input type="email" name="email" placeholder="Email"></input>
+    </div>
+    <div class="container">
+        <label>Pack#: </label>
+        <input type="number" name="packnum" placeHolder="#####"></input>
+    </div>
+    <div class="container">
+        <!--Mark leader or parent -->
+        <div class="radio">
+            <input type="radio" name="role" value="Leader" ng-click="selectLeader()">Leader
+            <input type="radio" name="role" value="Parent" ng-click="selectParent()">Parent
+        </div>
+        <p ng-show="$scope.isLeader">Leader chosen</p>
+        <p ng-show="$scope.isParent">Parent chosen</p>
+    </div>
+    <div>
+        <button type="button">Submit</button>
+    </div>
+</form>
