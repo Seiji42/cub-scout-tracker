@@ -37,7 +37,7 @@
             <input type="radio" name="role" value="Parent" ng-click="selectParent()">Parent
         </div>
         <div class="leaderDiv" ng-show="isLeader">
-            <div class="container">
+            <div class="inputDiv">
                 <label>Select group: </label>
                 <select name="group" ng-model="leaderGroup">
                     <option>Wolf</option>
@@ -45,13 +45,13 @@
                     <option>Webelos</option>
                 </select>
             </div>
-            <div class="container">
+            <div class="inputDiv">
                 <label>Primary Phone Number: </label>
                 <input type="tel" name="leadertel" placeholder="(888)888-8888" ng-model="leaderPhoneNumber"></input>
             </div>
         </div>
         <div class="parentDiv" ng-show="isParent">
-            <div class="container">
+            <div class="inputDiv">
                 <h3>Select Your Scouts: </h3>
                 <p><b><u>Wolf</u></b></p>
                 <div ng-repeat="scout in wolfScouts">
