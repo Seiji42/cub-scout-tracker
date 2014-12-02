@@ -2,44 +2,44 @@
     <div class="header">
         <h1>User Registration</h1>
     </div>
-    <div class="container">
+    <div class="inputDiv">
         <label>Username: </label>
-        <input type="text" name="username" placeholder="Username"></input>
+        <input type="text" name="username" placeholder="Username" ng-model="username"></input>
     </div>
-    <div class="container">
+    <div class="inputDiv">
         <label>Password: </label>
-        <input type="password" name="password" placeholder="Password"></input>
+        <input type="password" name="password" placeholder="Password" ng-model="password"></input>
     </div>
-    <div class="container">
+    <div class="inputDiv">
         <label>Confirm Password: </label>
         <input type="password" name="confirmpass" placeholder="Confirm Password"></input><br>
     </div>
-    <div class="container">
+    <div class="inputDiv">
         <label>First Name: </label>
-        <input type="text" name="firstname" placeHolder="First"></input>
+        <input type="text" name="firstname" placeHolder="First" ng-model="firstName"></input>
     </div>
-    <div class="container">
+    <div class="inputDiv">
         <label>Last Name: </label>
-        <input type="text" name="lastname" placeholder="Last"></input>
+        <input type="text" name="lastname" placeholder="Last" ng-model="lastName"></input>
     </div>
-    <div class="container">
+    <div class="inputDiv">
         <label>Email: </label>
-        <input type="email" name="email" placeholder="Email"></input>
+        <input type="email" name="email" placeholder="Email" ng-model="email"></input>
     </div>
-    <div class="container">
+    <div class="inputDiv">
         <label>Pack#: </label>
-        <input type="number" name="packnum" placeHolder="#####"></input>
+        <input type="number" name="packnum" placeHolder="#####" ng-model="packNum"></input>
     </div>
-    <div class="container">
+    <div class="radioSelectDiv">
         <!--Mark leader or parent -->
         <div class="radio">
             <input type="radio" name="role" value="Leader" ng-click="selectLeader()">Leader
             <input type="radio" name="role" value="Parent" ng-click="selectParent()">Parent
         </div>
-        <div ng-show="isLeader">
+        <div class="leaderDiv" ng-show="isLeader">
             <div class="container">
                 <label>Select group: </label>
-                <select name="group">
+                <select name="group" ng-model="leaderGroup">
                     <option>Wolf</option>
                     <option>Bear</option>
                     <option>Webelos</option>
@@ -47,10 +47,10 @@
             </div>
             <div class="container">
                 <label>Primary Phone Number: </label>
-                <input type="tel" name="leadertel" placeholder="(888)888-8888"></input>
+                <input type="tel" name="leadertel" placeholder="(888)888-8888" ng-model="leaderPhoneNumber"></input>
             </div>
         </div>
-        <div ng-show="isParent">
+        <div class="parentDiv" ng-show="isParent">
             <div class="container">
                 <h3>Select Your Scouts: </h3>
                 <p><b><u>Wolf</u></b></p>
@@ -67,7 +67,7 @@
                 </div>
         </div>
     </div>
-    <div>
-        <button type="button">Submit</button>
+    <div class="submitDiv">
+        <button type="button" ng-click="submitInfo()" ng-disabled="!canSubmit()">Submit</button>
     </div>
 </form>
