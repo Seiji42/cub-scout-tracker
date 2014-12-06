@@ -1,0 +1,11 @@
+<div ng-controller="infoCtrl">
+    <div ng-repeat="category in scout.categories">
+        {{"Item" + $index}}
+        <div ng-repeat="achievement in category.achievements">
+            {{achievement.id}}
+            <div ng-repeat="requirement in achievement.requirements">
+                {{requirement.id}}
+            </div>
+        </div>
+    </div>
+</div>
