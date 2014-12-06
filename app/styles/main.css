@@ -76,33 +76,4 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
-
-  /*Registration CSS */
-  .inputDiv, .leaderDiv, .parentDiv {
-    margin-left: 20px;
-    margin-bottom: 20px;
-  }
-
-  .inputDiv input {
-    display: inline-block;
-    width: 150px;
-    text-align: center;
-  }
-
-  .inputDiv label {
-    display: inline-block;
-    width: 150px;
-    text-align: right;
-  }
-  .radioSelectDiv .radio {
-    text-align: left;
-    margin-bottom: 20px;
-    margin-left: 150px;
-  }
-
-  .submitDiv {
-    text-align: left;
-    margin-bottom: 20px;
-    margin-left: 175px;
-  }
 }

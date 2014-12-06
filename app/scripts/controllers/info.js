@@ -9,6 +9,9 @@
  */
 angular.module('cubScoutTrackerApp')
   .controller('infoCtrl', ['$scope', 'fakeData', function ($scope, fakeData) {
-    $scope.scout = fakeData;
-    console.log("We got here");
+    $scope.scoutList = fakeData.getScouts();
+
+    $scope.changeScout = function(scoutId) {
+        $scope.scout = fakeData.getAchievements(scoutId);
+    }
   }]);

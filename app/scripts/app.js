@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc overview
- * @name cubScoutTrackerApp
+ * @name tempScoutApp
  * @description
- * # cubScoutTrackerApp
+ * # tempScoutApp
  *
  * Main module of the application.
  */
@@ -20,6 +20,10 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
       })
       .when('/info', {
         templateUrl: 'views/info.html',
