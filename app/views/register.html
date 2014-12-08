@@ -24,11 +24,11 @@
     </div>
     <div class="inputDiv">
         <label>Email: </label>
-        <input type="email" name="email" placeholder="Email" ng-model="email"></input>
+        <input type="text" name="email" placeholder="Email" ng-model="email"></input>
     </div>
     <div class="inputDiv">
         <label>Pack#: </label>
-        <input type="number" name="packnum" placeHolder="#####" ng-model="packNum"></input>
+        <input type="text" name="packnum" placeHolder="#####" ng-model="packNum"></input>
     </div>
     <div class="radioSelectDiv">
         <!--Mark leader or parent -->
@@ -55,15 +55,15 @@
                 <h3>Select Your Scouts: </h3>
                 <p><b><u>Wolf</u></b></p>
                 <div ng-repeat="scout in wolfScouts">
-                    <input type="checkbox" name="scout" value="{{scout}}">{{scout}}</input>
+                    <input type="checkbox" name="selectedScouts[]" value="{{scout}}" ng-checked="selectedScouts.indexOf(scout) > -1" ng-click="selectWolfScout(scout)"=>{{scout}}</input>
                 </div>
                 <p><b><u>Bear</u></b></p>
                 <div ng-repeat="scout in bearScouts">
-                    <input type="checkbox" name="scout" value="{{scout}}">{{scout}}</input>
+                    <input type="checkbox" name="selectedScouts[]" value="{{scout}}" ng-checked="selectedScouts.indexOf(scout) > -1" ng-click="selectBearScout(scout)"=>{{scout}}</input>
                 </div>
                 <p><b><u>Webelos</u></b></p>
                 <div ng-repeat="scout in webelosScouts">
-                    <input type="checkbox" name="scout" value="{{scout}}">{{scout}}</input>
+                    <input type="checkbox" name="selectedScouts[]" value="{{scout}}" ng-checked="selectedScouts.indexOf(scout) > -1" ng-click="selectWebelosScout(scout)"=>{{scout}}</input>
                 </div>
         </div>
     </div>
