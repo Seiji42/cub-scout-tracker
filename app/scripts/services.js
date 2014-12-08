@@ -1,5 +1,5 @@
 angular.module('cubScoutTrackerApp').
-factory('fakeData', [ function() {
+factory('FakeData', [ function() {
     var mainInfoBob = {
         categories: [{
             id:1,
@@ -81,6 +81,13 @@ factory('fakeData', [ function() {
             id:2
         }]
     };
+
+    var userMap = {
+        austin: {
+            username:'austin',
+            password:'tom'
+        }
+    };
     return {
         getAchievements: function(scoutId) {
             if(scoutId === 1)
@@ -90,6 +97,15 @@ factory('fakeData', [ function() {
         },
         getScouts: function() {
             return scoutInfo;
+        },
+        verify: function(user) {
+            var currentUser = userMap[user.username];
+            if (user.username === currentUser.username && user.password == currentUser.password) {
+                currentUser.status = 'verified';
+            }
+            else
+                currentUser.status = 'failed';
+            return currentUser;
         }
     };
 }]);
