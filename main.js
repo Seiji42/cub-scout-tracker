@@ -305,7 +305,7 @@ function selectScout(id, connection, achievements, cb)
 					}
 				}
 				*/
-				cb(null, rows[0], rows[1]);
+				cb(null, ans);
 
 				
 			}				
@@ -318,7 +318,10 @@ function selectScout(id, connection, achievements, cb)
 }
 
 //MAIN
+//Initialize achievements
+achieve = createAchievements();
 
+//Initialize mysql database
 var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host : "localhost",
@@ -328,7 +331,7 @@ var connection = mysql.createConnection({
 });
 
 console.log("HELLO WORLD");
-connection.connect();
+//connection.connect();
 connection.query("USE scoutdb");
 
 //insertScout('James2', 'Watts2', '12/30/19882', '8552', 'Bear2', connection);
@@ -337,16 +340,63 @@ connection.query("USE scoutdb");
 
 //selectAdults(connection);
 
-achieve = createAchievements();
-//console.log(achieve.wolf[0].requirements[0].description);
-a = achieve;
-selectScout(2, connection, a, function(err, s_result, r_result)
+//set up webserver
+var http = require('http');
+var url = require("url");
+
+var server = http.createServer(function(req, res)
 {
-	console.log("Send over the interwebs");
-	//console.log(rank_id);
+	var uri = url.parse(req.url).pathname;
+	console.log(uri);
+
+	if(uri == "/registeradult")
+	{
+	}
+	else if (uri == "/updateadult")
+	{
+	}
+	else if (uri == "/addrecord")
+	{
+	}
+	else if (uri == "/scoutinfo")
+	{
+		var info;
+		var ans2;
+		a = achieve;
+		req.on('data' , function(chunk){
+			//console.log(chunk.toString());
+			info = JSON.parse(chunk);
+			//console.log("CHECK: " + info.id);
+			
+			res.writeHead(200);
+			selectScout(info.id, connection, a, function(err, ans)
+			{
+			console.log("PRINTING SELECT SCOUT RESULTS");
+			console.log(ans.first_name + ans.last_name + ans.rank);
+			ans2 = ans;
+			res.end(JSON.stringify(ans2));
+			});
+
+			
+		});
+		//console.log(ans2.first_name + ans2.last_name + ans2.rank);
+		
+			
+	}
+	else if (uri == "/verifypassword")
+	{
+	}
+	else
+	{
+		res.writeHead(200);
+		res.end('Hello Http');
+	}
+
+	
 });
+server.listen(8080);
 
 //console.log("AFTER SCOUT");
 
-connection.end(function(err){
-});
+//connection.end(function(err){
+//});
