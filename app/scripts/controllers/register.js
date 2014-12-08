@@ -83,24 +83,24 @@ angular.module('cubScoutTrackerApp')
     };
 
     $scope.canSubmit = function() {
+        var result = false;
         if($scope.username !== "" && $scope.password !== "" && $scope.firstName !== "" && $scope.lastName !== "" && 
             $scope.email !== "" && $scope.packNum !== "")
         {
             if($scope.isLeader && $scope.leaderPhoneNumber !== "" && $scope.leaderGroup !== "") //Can later add a clause to check for a valid pack
-                return true;
+                result = true;
             else if($scope.isParent && $scope.selectedScouts.length > 0)
-                return true;
+                result = true;
             else
             {
-                console.log($scope.selectedScouts.length)
-                return false;
+                result = false;
             }
         }
         else
         {
-            console.log($scope.packNum);
-            return false;
+            result = false;
         }
+        return result;
     };
 
     $scope.submitInfo = function() {
