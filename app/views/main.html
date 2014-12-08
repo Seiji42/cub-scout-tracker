@@ -4,11 +4,13 @@
   </h1>
   <p class="lead">
     <div ng-show="user.message != null" style="color:red">{{user.message}}</div>
-    <div>Username: <input type="text" ng-model="user.username"></div>
-    <div>Password: <input type="password" ng-model="user.password"></div>
+    <div class="inputField"><span>Username: </span> <input class="fRight" type="text" ng-model="user.username"></div>
+    <div class="inputField"><span>Password: </span><input class="fRight" type="password" ng-model="user.password"></div>
+    <div class="clear"></div>
   </p>
-  <img style="float:left;height:200px" src="images/wolf.png" alt="I'm a wolf">
-  <p style="float:left">
+  <img class="leftImage" src="images/wolf.png" alt="I'm a wolf">
+  <img class="rightImage" src="images/bear.png" alt="I'm a bear">
+  <p>
     <div class="btn btn-lg btn-success" ng-click="login()">
       Sign In
       <span class="glyphicon glyphicon-ok"></span>
@@ -18,21 +20,19 @@
       <span class="glyphicon glyphicon-ok"></span>
     </a>
   </p>
-  <img style="float:left;height:200px" src="images/bear.png" alt="I'm a bear">
-  <div style="clear:both"></div>
 </div>
 
 <div class="row marketing">
   <h4>About</h4>
   <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+    This website is here to help you keep track of your cub scout's progress.
   </p>
 
   <h4>Current Features</h4>
   <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
+    Currently, you can pull up records for each of your scouts and add accomplishments.
   </p>
 
   <h4>Future Updates</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+  <p>We will be adding requirements for webelos scouts soon.</p>
 </div>

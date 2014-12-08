@@ -40,6 +40,24 @@ body {
 .container-narrow > hr {
   margin: 30px 0;
 }
+.inputField {
+  width: 300px;
+  margin: 10px auto;
+}
+
+.fLeft {
+  float:left;
+}
+.fRight {
+  float:right;
+}
+.clear {
+  clear:both;
+}
+
+.leftImage, .rightImage {
+  height: 200px;
+}
 
 /* Main marketing message and sign up button */
 .jumbotron {
@@ -48,7 +66,7 @@ body {
 }
 .jumbotron .btn {
   font-size: 21px;
-  padding: 14px 24px;
+  /*padding: 14px 24px;*/
 }
 
 /* Supporting marketing content */

@@ -99,12 +99,14 @@ factory('FakeData', [ function() {
             return scoutInfo;
         },
         verify: function(user) {
-            var currentUser = userMap[user.username];
-            if (user.username === currentUser.username && user.password == currentUser.password) {
+            debugger
+            var currentUser = angular.copy(userMap[user.username]);
+            if (currentUser && user.username === currentUser.username && user.password == currentUser.password) {
                 currentUser.status = 'verified';
             }
-            else
-                currentUser.status = 'failed';
+            else {
+                currentUser = {status:'failed'};
+            }
             return currentUser;
         }
     };
