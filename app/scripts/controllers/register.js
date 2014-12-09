@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cubScoutTrackerApp')
-  .controller('RegisterCtrl', ['$scope', function ($scope) {
+  .controller('RegisterCtrl', ['$scope', 'FakeData', function ($scope, FakeData) {
     $scope.username = "";
     $scope.password = "";
     $scope.confirmPass = "";
@@ -13,11 +13,11 @@ angular.module('cubScoutTrackerApp')
     $scope.isParent = false;
     $scope.leaderPhoneNumber = "";
     $scope.leaderGroup = "";
-    $scope.selectedScouts = [];
+    $scope.selectedScoutIDs = [];
     //The following will eventually be obtained from the database
-    $scope.wolfScouts = ["ed", "edd", "eddy"];
-    $scope.bearScouts = ["foo", "bar"];
-    $scope.webelosScouts = ["bill"];
+    $scope.wolfScouts = FakeData.getScoutsByGroup("Wolf");
+    $scope.bearScouts = FakeData.getScoutsByGroup("Bear");
+    $scope.webelosScouts = FakeData.getScoutsByGroup("Webelos");
     
     $scope.selectLeader = function() {
         $scope.isLeader = true;
@@ -29,57 +29,22 @@ angular.module('cubScoutTrackerApp')
         $scope.isLeader = false;
     };
 
-    $scope.selectWolfScout = function(scout) {
-        var index = $scope.selectedScouts.indexOf(scout);
+    $scope.selectScout = function(scout) {
+        var index = $scope.selectedScoutIDs.indexOf(scout.id);
 
         // is currently selected
         if (index > -1) {
-          $scope.selectedScouts.splice(index, 1);
+          $scope.selectedScoutIDs.splice(index, 1);
         }
 
         // is newly selected
         else {
-          $scope.selectedScouts.push(scout);
+          $scope.selectedScoutIDs.push(scout.id);
         }
 
-        console.log(scout + " selected; ");
+        console.log(scout.name + " selected; ");
 
-        console.log("Current scouts: " + $scope.selectedScouts);
-    };
-
-     $scope.selectBearScout = function(scout) {
-        var index = $scope.selectedScouts.indexOf(scout);
-
-        // is currently selected
-        if (index > -1) {
-          $scope.selectedScouts.splice(index, 1);
-        }
-
-        // is newly selected
-        else {
-          $scope.selectedScouts.push(scout);
-        }
-
-        console.log(scout + " selected; ");
-
-        console.log("Current scouts: " + $scope.selectedScouts);
-    };
-
-     $scope.selectWebelosScout = function(scout) {
-        var index = $scope.selectedScouts.indexOf(scout);
-
-        // is currently selected
-        if (index > -1) {
-          $scope.selectedScouts.splice(index, 1);
-        }
-
-        // is newly selected
-        else {
-          $scope.selectedScouts.push(scout);
-        }
-        console.log(scout + " selected; ");
-
-        console.log("Current scouts: " + $scope.selectedScouts);
+        console.log("Current scouts: " + $scope.selectedScoutIDs);
     };
 
     $scope.canSubmit = function() {
