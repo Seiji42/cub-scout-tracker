@@ -85,7 +85,7 @@ angular.module('cubScoutTrackerApp')
     $scope.canSubmit = function() {
         var result = false;
         if($scope.username !== "" && $scope.password !== "" && $scope.firstName !== "" && $scope.lastName !== "" && 
-            $scope.email !== "" && $scope.packNum !== "")
+            $scope.email !== "" && $scope.packNum !== "" && $scope.password === $scope.confirmPass)
         {
             if($scope.isLeader && $scope.leaderPhoneNumber !== "" && $scope.leaderGroup !== "") //Can later add a clause to check for a valid pack
                 result = true;
