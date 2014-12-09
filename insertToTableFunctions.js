@@ -2,17 +2,9 @@
  * New node file
  */
 
-function Adult(firstName, lastName, username, packNumber, 
-		leaderType, rankType, phoneNumber, rowID)
+function Adult(databaseObject)
 {
-	this.firstName=firstName;
-	this.lastName=lastName;
-	this.username=username;
-	this.packNumber=packNumber;
-	this.leaderType=leaderType;
-	this.rankType=rankType;
-	this.phoneNumber=phoneNumber;
-	this.rowID=rowID;
+	this.databaseObject=databaseObject;
 	this.scouts=[];
 }
 
@@ -27,7 +19,22 @@ function hashPassword(password)
 	return hash;
 }
 
-function selectAdult(username, password, connection)
+function selectAdult(username, connection)
+{
+	var strQuery = "SELECT * FROM adult WHERE username= '" +connection.escape(username)+"'";
+
+	connection.query( strQuery, function(err, rows)
+			{if(err) {
+				throw err;
+			}else{
+				temp= rows[0];
+				temp.password="";
+				return temp;
+			}
+			});
+}
+
+function validateAdult(username, password, connection)
 {
 	var strQuery = "SELECT * FROM adult WHERE username= '" +connection.escape(username)+"'" +"AND password= '"
 	+ hashPassword(password)+"'";
@@ -36,14 +43,8 @@ function selectAdult(username, password, connection)
 			{if(err) {
 				throw err;
 			}else{
-				var temp = new Adult();
-				for(i=0; i<rows.length;i++)
-				{
-					var row=rows[i].split();
-					Object.keys(temp)[i]=row[row.length-1];
-				}
-				if(temp.rowID<1)
-				{temp.rowID=-1;}
+				temp= rows[0];
+				temp.password="";
 				return temp;
 			}
 			});
@@ -54,10 +55,8 @@ function insertAdult(firstName, lastName, username, password, packNumber,
 {
 	var temp= selectAdult(username, connection);
 
-	if(temp.rowID<0)
+	if(temp.databaseObject.adult_id<1)
 	{
-		temp= new Adult(firstName, lastName, username, packNumber, 
-				leaderType, rankType, phoneNumber,-1);
 		return temp;
 	}
 	var strQuery = "INSERT INTO adult VALUES('"+firstName+"', '"+lastName+"', '"+
@@ -67,8 +66,7 @@ function insertAdult(firstName, lastName, username, password, packNumber,
 			{if(err) {
 				throw err;
 			}else{
-				temp= new Adult(firstName, lastName, username, packNumber, 
-						leaderType, rankType, phoneNumber,rows.insertid);
+				temp= new Adult(row[0]);
 				return addScoutsToParent(temp);
 			}
 			});
@@ -79,7 +77,7 @@ function updateAdult(firstName, lastName, username, password, packNumber,
 {
 	var temp= selectAdult(username, connection);
 
-	if(temp.rowID<1)
+	if(temp.databaseObject.adult_id<1)
 	{
 		temp= new Adult(firstName, lastName, username, packNumber, 
 				leaderType, rankType, phoneNumber,-1);
@@ -93,9 +91,8 @@ function updateAdult(firstName, lastName, username, password, packNumber,
 				throw err;
 			}else{
 				//console.log(rows);
-				temp= new Adult(firstName, lastName, username, packNumber, 
-						leaderType, rankType, phoneNumber,rows.insertid);
-				return temp;
+				temp= new Adult(row[0]);
+				return addScoutsToParent(temp);
 			}
 			});
 }
@@ -109,7 +106,7 @@ function insertAchievement(name, description, categoryID, numElectives, connecti
 				throw err;
 			}else{
 				//console.log(rows);
-				return rows.insertid;
+				return rows[0];
 			}
 			});
 }
@@ -123,7 +120,7 @@ function insertCategory(name, description, rankID, numAchievments, connection)
 				throw err;
 			}else{
 				//console.log(rows);
-				return rows.insertid;
+				return rows[0];
 			}
 			});
 }
@@ -137,7 +134,7 @@ function insertRank(name, description, connection)
 				throw err;
 			}else{
 				//console.log(rows);
-				return rows.insertid;
+				return rows[0];
 			}
 			});
 }
@@ -153,7 +150,7 @@ function insertRecord(recordRankType, dateDone,requirementID,
 				throw err;
 			}else{
 				//console.log(rows);
-				return rows.insertid;
+				return rows[0];
 			}
 			});
 }
@@ -167,21 +164,9 @@ function insertRequirement(name, description, achievementID, reqElec, connection
 				throw err;
 			}else{
 				//console.log(rows);
-				return rows.insertid;
+				return rows[0];
 			}
 			});
-}
-
-function Scout(firstName, lastName, birthDate, packNumber, rankType, parentID, leaderId, rowID)
-{
-	this.firstName=firstName;
-	this.lastName=lastName;
-	this.birthDate=birthDate;
-	this.packNumber=packNumber;
-	this.rankType=rankType;
-	this.parentID=parentID;
-	this.leaderID=leaderID;
-	this.rowID=rowID;
 }
 
 function insertScout(firstName, lastName, birthDate, 
@@ -193,9 +178,7 @@ function insertScout(firstName, lastName, birthDate,
 			{if(err) {
 				throw err;
 			}else{
-				scout = new scout(firstName, lastName, birthDate, 
-						packNumber, rankType, parentID, leaderID,rows.insertID);
-				return scout;
+				return rows[0];
 			}
 			});
 }
@@ -203,14 +186,6 @@ function insertScout(firstName, lastName, birthDate,
 function updateScout(firstName, lastName, birthDate,packNumber, 
 		 rankType, parentID, leaderID, scoutID, connection)
 {
-	var temp= selectAdult(username, connection);
-
-	if(temp.rowID<1)
-	{
-		temp= new Scout(firstName, lastName, birthDate,packNumber, 
-				 rankType, parentID, leaderID, -1);
-		return temp;
-	}
 	var strQuery = "UPDATE scout SET first_name="+firstName+", last_name="+lastName+", birth_date="+
 	 + ", pack_number=" + + ", rank_type=" + packNumber+", parent_id="+
 	leaderType +", leader_id="+ rankType+" WHERE scout_id="+id;
@@ -219,9 +194,7 @@ function updateScout(firstName, lastName, birthDate,packNumber,
 				throw err;
 			}else{
 				//console.log(rows);
-				temp= new Scout(firstName, lastName, birthDate,packNumber, 
-						 rankType, parentID, leaderID, scoutID);
-				return temp;
+				return rows[0];
 			}
 			});
 }
@@ -234,18 +207,11 @@ function addScoutsToParent(adult, connection)
 			{if(err) {
 				throw err;
 			}else{
-				var temp = new Scout();
 
-				for(k=0;k<rows.length ;k++)
+
+				for(i=0;i<rows.length ;i++)
 				{
-					for(i=0; i<Object.keys(temp).length;i++)
-					{
-						var row=rows[i].split();
-						Object.keys(temp)[i]=row[row.length-1];
-					}
-					if(temp.rowID<1)
-					{temp.rowID=-1;}
-					adult.add(temp);
+					adult.scouts.add(rows[i]);
 				}
 				return adult;
 			}
