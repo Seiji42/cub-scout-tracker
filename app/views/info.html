@@ -1,16 +1,19 @@
-<div ng-controller="infoCtrl">
-    {{scoutList}}
-    <button class='tab', ng-repeat='scout in scoutList.scouts' ng-click='changeScout(scout.id)'>{{scout.name}} </button>
+<a class="btn btn-lg" ng-href="#/newscout">
+      Register New Scout
+    </a>
+
+
+{{scoutList}}
+<button class='tab', ng-repeat='scout in scoutList.scouts' ng-click='changeScout(scout.id)'>{{scout.name}} </button>
 
 
 
-    <div ng-repeat="category in scout.categories">
-        {{"Item" + $index}}
-        <div ng-repeat="achievement in category.achievements">
-            {{achievement.id}}
-            <div ng-repeat="requirement in achievement.requirements">
-                {{requirement.id}}  {{requirement.completion_date}}
-            </div>
+<div ng-repeat="category in scout.categories">
+    {{"Item" + $index}}
+    <div ng-repeat="achievement in category.achievements">
+        {{achievement.id}}
+        <div ng-repeat="requirement in achievement.requirements">
+            {{requirement.id}}  {{requirement.completion_date}}
         </div>
     </div>
 </div>

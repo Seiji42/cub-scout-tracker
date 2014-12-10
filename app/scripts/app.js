@@ -27,10 +27,16 @@ angular
       })
       .when('/info', {
         templateUrl: 'views/info.html',
+        controller: 'InfoCtrl'
       })
       .when('/register', {
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl'
+      })
+
+      .when('/newscout', {
+        templateUrl: 'views/newscout.html',
+        controller: 'RegisterScoutCtrl'
       })
       .otherwise({
         redirectTo: '/'
