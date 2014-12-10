@@ -1,6 +1,7 @@
+<div class="jumbotron">
 <form>
     <div class="header">
-        <h1>User Registration</h1>
+        <h2>User Registration</h2>
     </div>
     <div class="inputDiv">
         <label>Username: </label>
@@ -12,7 +13,7 @@
     </div>
     <div class="inputDiv">
         <label>Confirm Password: </label>
-        <input type="password" name="confirmpass" placeholder="Confirm Password"></input><br>
+        <input type="password" name="confirmPass" placeholder="Confirm Password" ng-model="confirmPass"></input><br>
     </div>
     <div class="inputDiv">
         <label>First Name: </label>
@@ -32,10 +33,12 @@
     </div>
     <div class="radioSelectDiv">
         <!--Mark leader or parent -->
-        <div class="radio">
-            <input type="radio" name="role" value="Leader" ng-click="selectLeader()">Leader
-            <input type="radio" name="role" value="Parent" ng-click="selectParent()">Parent
-        </div>
+        <td align="left">
+
+            <input type="radio" name="role" value="Leader" ng-click="selectLeader()"> Leader 
+
+            <input type="radio" name="role" value="Parent" ng-click="selectParent()"> Parent
+        </td>
         <div class="leaderDiv" ng-show="isLeader">
             <div class="inputDiv">
                 <label>Select group: </label>
@@ -55,19 +58,21 @@
                 <h3>Select Your Scouts: </h3>
                 <p><b><u>Wolf</u></b></p>
                 <div ng-repeat="scout in wolfScouts">
-                    <input type="checkbox" name="selectedScouts[]" value="{{scout}}" ng-checked="selectedScouts.indexOf(scout) > -1" ng-click="selectWolfScout(scout)"=>{{scout}}</input>
-                </div>
+                    <input type="checkbox" name="selectedScouts[]" value="{{scout}}" ng-checked="selectedScouts.indexOf(scout) > -1" ng-click="selectScout(scout)"=>{{scout.name}}</input>
+                </div><br>
                 <p><b><u>Bear</u></b></p>
                 <div ng-repeat="scout in bearScouts">
-                    <input type="checkbox" name="selectedScouts[]" value="{{scout}}" ng-checked="selectedScouts.indexOf(scout) > -1" ng-click="selectBearScout(scout)"=>{{scout}}</input>
-                </div>
+                    <input type="checkbox" name="selectedScouts[]" value="{{scout}}" ng-checked="selectedScouts.indexOf(scout) > -1" ng-click="selectScout(scout)"=>{{scout.name}}</input>
+                </div><br>
                 <p><b><u>Webelos</u></b></p>
                 <div ng-repeat="scout in webelosScouts">
-                    <input type="checkbox" name="selectedScouts[]" value="{{scout}}" ng-checked="selectedScouts.indexOf(scout) > -1" ng-click="selectWebelosScout(scout)"=>{{scout}}</input>
+                    <input type="checkbox" name="selectedScouts[]" value="{{scout}}" ng-checked="selectedScouts.indexOf(scout) > -1" ng-click="selectScout(scout)"=>{{scout.name}}</input>
                 </div>
         </div>
     </div>
     <div class="submitDiv">
-        <button type="button" ng-click="submitInfo()" ng-disabled="!canSubmit()">Submit</button>
+        <br>
+        <a class="btn btn-lg btn-success" ng-click="submitInfo()" ng-show="canSubmit()">Submit</a>
     </div>
 </form>
+</div>

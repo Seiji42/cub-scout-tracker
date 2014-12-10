@@ -8,8 +8,9 @@
  * Controller of the cubScoutTrackerApp
  */
 angular.module('cubScoutTrackerApp')
-  .controller('infoCtrl', ['$scope', 'FakeData', function ($scope, FakeData) {
+  .controller('InfoCtrl', ['$scope', 'FakeData', function ($scope, FakeData) {
     $scope.scoutList = FakeData.getScouts();
+    console.log($scope.scoutList);
 
     $scope.changeScout = function(scoutId) {
         $scope.scout = FakeData.getAchievements(scoutId);

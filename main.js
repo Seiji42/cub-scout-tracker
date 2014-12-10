@@ -1,3 +1,5 @@
+var debug = true;
+
 function createAchievements()
 {
 	var achieve = { wolf : [], bear : []};
@@ -147,7 +149,7 @@ achievement11 = {name: "Making Choices", num : 12, requirements:[], 			numelec: 
 	
 }
 
-function insertScout(f_name, l_name, birthdate, packnumber, ranktype, connection)
+function insertScout(f_name, l_name, birthdate, packnumber, ranktype, connection, cb)
 {
 	console.log("BEFORE SCOUT");
 	var strQuery = "INSERT INTO scout VALUES('"+f_name+"', '" +  l_name + "', '" + birthdate + "', '" + packnumber + "', '" + ranktype + "', NULL, NULL, NULL)";
@@ -156,15 +158,17 @@ function insertScout(f_name, l_name, birthdate, packnumber, ranktype, connection
 			throw err;
 		}else{
 			//console.log(rows);
+			cb({status: "OK"});
 		}
 	});
 }
 
-function insertAdult(f_name, l_name, username, password, packnumber, leader_type,  ranktype, phonenumber, connection)
+function insertAdult2(f_name, l_name, username, password, packnumber, leader_type,  ranktype, phonenumber, connection)
 {
 
 	var strQuery = "INSERT INTO adult VALUES ('" + f_name + "', '" + l_name + 
 "', '" + username + "', '" + password + "', '" + packnumber + "', '" + leader_type + "', '" + ranktype + "', '" + phonenumber + "', NULL)";
+
 	connection.query( strQuery, function(err, rows)
 		{if(err) {
 			throw err;
@@ -187,6 +191,234 @@ function selectAdults(connection)
 	});
 }
 
+function hashPassword(username, password)
+{
+	var hash=0;
+
+	for (i=0;i<username.length;i++)
+	{
+		hash+=username[i].charCodeAt()*51;
+	}
+	
+	for (i=0;i<password.length;i++)
+	{
+		hash+=password[i].charCodeAt()*37;
+	}
+	
+
+	return hash;
+}
+
+function selectAdult(username, connection, cb)
+{
+	var strQuery = "SELECT * FROM adult WHERE username = '" + username + "'";
+
+	connection.query( strQuery, function(err, rows)
+			{if(err) {
+				throw err;
+			}else{
+				temp= rows[0];
+				if(temp != undefined)
+				{
+					console.log("TEMP EXISTS");
+					temp.password="";
+				}
+				if(debug)
+				{
+					//console.log(rows);
+				}
+				
+				cb(null,temp);
+			}
+			});
+}
+
+function selectScoutList(leader_type, rank_type, pack_number, parent_id, connection, cb)
+{
+	var strQuery;
+	if(leader_type == "parent")
+	{
+		console.log("parent");
+		strQuery = "SELECT * FROM scout WHERE parent_id = " + parent_id;
+	}
+	else
+	{
+		console.log("leader");
+		strQuery = "SELECT * FROM scout WHERE pack_number = '" + pack_number + "' AND rank_type = '" + rank_type + "'";
+	}
+
+	connection.query( strQuery, function(err, rows)
+			{if(err) {
+				throw err;
+			}else{
+				var ans;
+				console.log(rows);
+				if(rows[0] == undefined)
+				{
+					ans = {scout : [], status: "No Scout Exists"};
+				}
+				else
+				{
+					ans = {scout : rows, status: "OK"};
+				}
+				cb(ans);
+			}
+			});
+}
+
+function selectBatman(connection, cb)
+{
+	strQuery = "SELECT * FROM scout WHERE parent_id is null";
+
+	connection.query( strQuery, function(err, rows)
+			{if(err) {
+				throw err;
+			}else{
+				var ans;
+				console.log(rows);
+				if(rows[0] == undefined)
+				{
+					ans = {scout : [], status: "No Scout Exists"};
+				}
+				else
+				{
+					ans = {scout : rows, status: "OK"};
+				}
+				cb(ans);
+			}
+			});
+}
+
+function verifyPassword(username, password, connection, cb)
+{
+	var strQuery;
+
+		console.log("leader");
+	strQuery = "SELECT * FROM adult WHERE username = '" + username + "' AND password = '" + password + "'";
+
+	connection.query( strQuery, function(err, rows)
+			{if(err) {
+				throw err;
+			}else{
+				var ans;
+				console.log(rows);
+				if(rows[0] == undefined)
+				{
+					ans = {status: "USERNAME OR PASSWORD INCORRECT"};
+				}
+				else
+				{
+					ans = {adult : rows[0], status: "OK"};
+				}
+				cb(ans);
+			}
+			});
+}
+
+
+function insertAdult(firstName, lastName, username, password, packNumber, 
+		leaderType, rankType, phoneNumber, email, connection, cb)
+{
+	selectAdult(username, connection, function(err, temp){
+		if(temp != undefined)
+		{
+			if(debug)
+			{
+				console.log("ALREADY EXISTS");
+			}
+			returnme = {first_name : firstName, last_name : lastName, username : username, pack_number : packNumber, leader_type : leaderType, rank_type : rankType, status : "ALREADY EXISTS"}
+			cb(returnme);
+		}
+		else
+		{
+			console.log("Doesn't exist");
+			connection.query( strQuery, function(err, rows)
+				{if(err) {
+					throw err;
+				}else{
+					//temp= new Adult(row[0]);
+					if(debug)
+					{
+						console.log("insertAdult");
+						//console.log(rows);
+					}
+			console.log("Checking insertid: " + rows.insertID);
+					returnme = {first_name : firstName, last_name : lastName, username : username, pack_number : packNumber, leader_type : leaderType, rank_type : rankType, parent_id : rows.insertId, status : "OK"}
+					cb(returnme);
+				}
+			});
+		}
+	});
+
+
+
+		/*var strQuery = "INSERT INTO adult VALUES ('" + f_name + "', '" + l_name + 
+"', '" + username + "', '" + password + "', '" + packnumber + "', '" + leader_type + "', '" + ranktype + "', '" + phonenumber + "', NULL)";*/
+
+	var strQuery = "INSERT INTO adult VALUES('"+
+	firstName     +"', '"+
+	lastName      +"', '"+
+	username      +"', '"+
+	password       +"', '"+ 
+	packNumber    +"', '"+	
+	leaderType    +"', '"+ 
+	rankType      +"', '"+
+	phoneNumber   +"', '"+
+	email         +"', NULL)";
+	
+}
+
+function updateScout(firstName, lastName, birthDate,packNumber, 
+		rankType, parentID, scoutID, connection, cb)
+{
+	console.log(firstName + " " + lastName + " " + birthDate + " " + packNumber + " " + rankType);
+	console.log(parentID + " " + scoutID);
+	var strQuery = "UPDATE scout SET "+
+	"first_name= '"     + firstName  +
+	"', last_name='"    + lastName   +
+	"', birth_date='"   + birthDate  + 
+	"', pack_number='"  + packNumber + 
+	"', rank_type='"    + rankType  +
+	"', parent_id='"    + parentID   +
+	"', leader_id= NULL"    + 
+	" WHERE scout_id="+ scoutID;
+	connection.query( strQuery, function(err, rows)
+			{if(err) {
+				throw err;
+			}else{
+				console.log(rows);
+				/*if(rows[0] == undefined)
+				{
+					cb({status: "SCOUTNOEXIST"});
+				}
+				else
+				{
+					cb({status: "OK"});
+				}*/
+				cb({status:"OK"});
+			}
+			});
+}
+
+function insertRecord(recordRankType, dateDone,requirementID, 
+		scoutID, connection, cb)
+{
+	var strQuery = "INSERT INTO record  VALUES('"+
+	recordRankType            +"', '"+  
+	dateDone                  +"', '"+
+	requirementID             +"', '"+
+	scoutID                   +"', 'NULL')";
+
+	connection.query( strQuery, function(err, rows)
+			{if(err) {
+				throw err;
+			}else{
+				
+				cb({status : "OK"});
+			}
+			});
+}
+
 function selectScout(id, connection, achievements, cb)
 {
 	var strQuery = "SELECT * FROM scout WHERE scout_id = " + id;
@@ -201,7 +433,9 @@ function selectScout(id, connection, achievements, cb)
 
 			if(rows[0][0] == undefined)
 			{
-				//console.log("No SCOUT EXISTS");
+				console.log("No SCOUT EXISTS");
+				ans = {status : "ScoutNoExists"}
+				cb(null, ans)
 			}
 			else
 			{
@@ -217,8 +451,11 @@ function selectScout(id, connection, achievements, cb)
 				{
 					//rank_id = 2;
 				}
-
-				if(rank_id == 1)
+				
+				if(r.result == undefined)
+				{
+				}
+				else if(rank_id == 1)
 				{
 					//GET WOLF RECORD DATES
 					for(var i = 0; i < r_result.length; i++)
@@ -286,7 +523,7 @@ function selectScout(id, connection, achievements, cb)
 
 				//console.log(s_result);
 
-				ans = {first_name : s_result[0]. first_name, last_name : s_result[0].last_name, rank : s_result[0].rank_type, ach : achievements}
+				ans = {first_name : s_result[0]. first_name, last_name : s_result[0].last_name, rank : s_result[0].rank_type, ach : achievements, status : "OK"};
 				
 				/*
 				console.log(ans.ach.wolf[0].requirements[0].description);
@@ -334,11 +571,8 @@ console.log("HELLO WORLD");
 //connection.connect();
 connection.query("USE scoutdb");
 
-//insertScout('James2', 'Watts2', '12/30/19882', '8552', 'Bear2', connection);
-
-//insertAdult('James', 'Watts', 'jwatts2', 'pass', '855', 'leader', 'Bear', '855222222', connection);
-
-//selectAdults(connection);
+//function insertAdult(firstName, lastName, username, password, packNumber, 
+	//	leaderType, rankType, phoneNumber, email, connection)
 
 //set up webserver
 var http = require('http');
@@ -351,12 +585,129 @@ var server = http.createServer(function(req, res)
 
 	if(uri == "/registeradult")
 	{
+		var info;
+		var ans2;
+		a = achieve;
+		req.on('data' , function(chunk){
+			//console.log(chunk.toString());
+			info = JSON.parse(chunk);
+			//console.log("CHECK: " + info.id);
+			
+			res.writeHead(200);
+
+			insertAdult(info.first_name, info.last_name, info.username, info.password, info.pack_number, info.leader_type, info.rank_type, info.phone_number, info.email, connection, function(sendjson){
+				console.log("PRINTING INSERT ADULT RESULTS");
+				console.log(sendjson.status);
+
+				res.end(JSON.stringify(sendjson));
+			});
+			
+		});
 	}
-	else if (uri == "/updateadult")
+	else if (uri == "/registerscout")
 	{
+		var info;
+		var ans2;
+		a = achieve;
+		req.on('data' , function(chunk){
+			//console.log(chunk.toString());
+			info = JSON.parse(chunk);
+			//console.log("CHECK: " + info.id);
+			
+			res.writeHead(200);
+			//function insertScout(f_name, l_name, birthdate, packnumber, ranktype, connection)
+			insertScout(info.first_name, info.last_name, info.birth_date, info.pack_number, info.rank_type, connection, function(sendjson){
+				console.log("PRINTING INSERT SCOUT RESULTS");
+				console.log(sendjson.status);
+
+				res.end(JSON.stringify(sendjson));
+			});
+			
+		});
+	}
+	else if (uri == "/addparent_id")
+	{
+
+		var info;
+		var ans2;
+		a = achieve;
+		req.on('data' , function(chunk){
+			//console.log(chunk.toString());
+			info = JSON.parse(chunk);
+			//console.log("CHECK: " + info.id);
+			
+			res.writeHead(200);
+			updateScout(info.first_name, info.last_name, info.birth_date, info.pack_number, info.rank_type, info.parent_id, info.scout_id, connection, function(sendjson){
+				console.log("PRINTING UPDATE SCOUT RESULTS");
+				console.log(sendjson.status);
+
+				res.end(JSON.stringify(sendjson));
+			});
+			
+		});
+	}
+	else if (uri == "/scoutstoselect")
+	{
+		var info;
+		var ans2;
+		a = achieve;
+		req.on('data' , function(chunk){
+			//console.log(chunk.toString());
+			info = JSON.parse(chunk);
+			//console.log("CHECK: " + info.id);
+			
+			res.writeHead(200);
+			selectScoutList(info.leader_type, info.rank_type, info.pack_number, info.parent_id, connection, function(sendjson){
+				console.log("PRINTING SCOUTLIST RESULTS");
+				console.log(sendjson.status);
+
+				res.end(JSON.stringify(sendjson));
+			});
+			
+		});
+	}
+	else if (uri == "/scoutswithnoparent")
+	{
+
+		var info;
+		var ans2;
+		a = achieve;
+		req.on('data' , function(chunk){
+			//console.log(chunk.toString());
+			info = JSON.parse(chunk);
+			//console.log("CHECK: " + info.id);
+			
+			res.writeHead(200);
+			selectBatman(connection, function(sendjson){
+				console.log("PRINTING SCOUTLIST RESULTS");
+				console.log(sendjson.status);
+
+				res.end(JSON.stringify(sendjson));
+			});
+			
+		});
 	}
 	else if (uri == "/addrecord")
 	{
+		var info;
+		var ans2;
+		a = achieve;
+		req.on('data' , function(chunk){
+			//console.log(chunk.toString());
+			info = JSON.parse(chunk);
+			//console.log("CHECK: " + info.id);
+			
+			res.writeHead(200);
+			insertRecord(info.rank_type, info.date_done, info.req_id, info.scout_id, connection, function(ans)
+			{
+			console.log("PRINTING ADDRECORD RESULTS");
+			console.log(ans.status);
+			ans2 = ans;
+			res.end(JSON.stringify(ans2));
+			});
+
+			
+		});
 	}
 	else if (uri == "/scoutinfo")
 	{
@@ -385,6 +736,23 @@ var server = http.createServer(function(req, res)
 	}
 	else if (uri == "/verifypassword")
 	{
+		var info;
+		var ans2;
+		a = achieve;
+		req.on('data' , function(chunk){
+			//console.log(chunk.toString());
+			info = JSON.parse(chunk);
+			//console.log("CHECK: " + info.id);
+			
+			res.writeHead(200);
+			verifyPassword(info.username, info.password, connection, function(sendjson){
+				console.log("PRINTING VERIFY RESULTS");
+				console.log(sendjson.status);
+
+				res.end(JSON.stringify(sendjson));
+			});
+			
+		});
 	}
 	else
 	{
