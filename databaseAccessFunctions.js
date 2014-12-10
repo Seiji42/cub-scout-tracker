@@ -5,39 +5,47 @@ debug=true;
 
 function Adult(databaseObject)
 {
-	this.databaseObject=databaseObject;
+	this.adult=databaseObject;
 	this.scouts=[];
 }
 
-function hashPassword(password)
+function hashPassword(username, password)
 {
 	var hash=0;
 
+	for (i=0;i<username.length;i++)
+	{
+		hash+=username[i].charCodeAt()*51;
+	}
+	
 	for (i=0;i<password.length;i++)
 	{
 		hash+=password[i].charCodeAt()*37;
 	}
+	
+
 	return hash;
 }
 
 function insertAdult(firstName, lastName, username, password, packNumber, 
-		leaderType, rankType, phoneNumber, connection)
+		leaderType, rankType, phoneNumber, email, connection)
 {
 	var temp= selectAdult(username, connection);
 
-	if(temp.databaseObject.adult_id<1)
+	if(temp.adult.adult_id<1)
 	{
 		return temp;
 	}
 	var strQuery = "INSERT INTO adult VALUES('"+
-	connection.escape(firstName)               +"', '"+
-	connection.escape(lastName)                +"', '"+
-	connection.escape(username)                +"', '"+
-	connection.escape(hashPassword(password))  +"', '"+ 
-	connection.escape(packNumber)              +"', '"+	
-	connection.escape(leaderType)              +"', '"+ 
-	connection.escape(rankType)                +"', '"+
-	connection.escape(phoneNumber)             +"', 'NULL')";
+	connection.escape(firstName)     +"', '"+
+	connection.escape(lastName)      +"', '"+
+	connection.escape(username)      +"', '"+
+	hashPassword(username, password) +"', '"+ 
+	connection.escape(packNumber)    +"', '"+	
+	connection.escape(leaderType)    +"', '"+ 
+	connection.escape(rankType)      +"', '"+
+	connection.escape(phoneNumber)   +"', '"+
+	connection.escape(email)         +"', 'NULL')";
 
 	connection.query( strQuery, function(err, rows)
 			{if(err) {
@@ -74,7 +82,7 @@ function validateAdult(username, password, connection)
 {
 	var strQuery = "SELECT * FROM adult WHERE username= '" +
 	connection.escape(username)+"'" +"AND password= '"     + 
-	connection.escape(hashPassword(password))+"'";
+	hashPassword(username, password)                       +"'";
 
 	connection.query( strQuery, function(err, rows)
 			{if(err) {
@@ -94,25 +102,26 @@ function validateAdult(username, password, connection)
 
 
 function updateAdult(firstName, lastName, username, password, packNumber, 
-		leaderType, rankType, phoneNumber,adultID, connection)
+		leaderType, rankType, phoneNumber, email, adultID, connection)
 {
 	var temp= selectAdult(username, connection);
 
-	if(temp.databaseObject.adult_id<1)
+	if(temp.adult.adult_id<1)
 	{
 		temp= new Adult(firstName, lastName, username, packNumber, 
 				leaderType, rankType, phoneNumber,-1);
 		return temp;
 	}
 	var strQuery = "UPDATE adult SET "+
-	"first_name="    +connection.escape(firstName)             +
-	", last_name="   +connection.escape(lastName)              +
-	", username="    +connection.escape(username)              + 
-	", password="    +connection.escape(hashPassword(password))+ 
-	", pack_number=" +connection.escape(packNumber)            +
-	", leader_type=" +connection.escape(leaderType)            +
-	", rank_type="   +connection.escape(rankType)              +
-	", phone_number="+connection.escape(phoneNumber)           + 
+	"first_name="    +connection.escape(firstName)   +
+	", last_name="   +connection.escape(lastName)    +
+	", username="    +connection.escape(username)    + 
+	", password="    +hashPassword(password)         + 
+	", pack_number=" +connection.escape(packNumber)  +
+	", leader_type=" +connection.escape(leaderType)  +
+	", rank_type="   +connection.escape(rankType)    +
+	", phone_number="+connection.escape(phoneNumber) + 
+	", email="       +connection.escape(email)       +
 	"WHERE adult_id="+connection.escape(id);
 	connection.query( strQuery, function(err, rows)
 			{if(err) {
