@@ -268,6 +268,7 @@ function selectScoutList(leader_type, rank_type, pack_number, parent_id, connect
 
 function selectBatman(connection, cb)
 {
+		console.log("I am in noparetns");
 	strQuery = "SELECT * FROM scout WHERE parent_id is null";
 
 	connection.query( strQuery, function(err, rows)
@@ -562,14 +563,14 @@ achieve = createAchievements();
 var mysql = require('mysql');
 var connection = mysql.createConnection({
 	host : "localhost",
-	user : "root",
-	password: "lildude1",
+	user : "scoutTest",
+	password: "scoutTest",
 	multipleStatements: true
 });
 
 console.log("HELLO WORLD");
 //connection.connect();
-connection.query("USE scoutdb");
+connection.query("USE scoutTest");
 
 //function insertAdult(firstName, lastName, username, password, packNumber, 
 	//	leaderType, rankType, phoneNumber, email, connection)
@@ -580,8 +581,29 @@ var url = require("url");
 
 var server = http.createServer(function(req, res)
 {
+	if(req.method == 'OPTIONS'){
+	
+	res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Credentials', false);
+    res.setHeader('Access-Control-Max-Age', '86400');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+		res.writeHead(200);
+		res.end();
+	}
+	else
+	{
+	 res.setHeader("Access-Control-Allow-Origin", "*");
+	 res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	//res.header('Access-Control-Allow-Origin', req.headers.origin);
+    //res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    //res.header('Access-Control-Allow-Credentials', false);
+    //res.header('Access-Control-Max-Age', '86400');
+    //res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 	var uri = url.parse(req.url).pathname;
 	console.log(uri);
+
+
 
 	if(uri == "/registeradult")
 	{
@@ -589,6 +611,7 @@ var server = http.createServer(function(req, res)
 		var ans2;
 		a = achieve;
 		req.on('data' , function(chunk){
+			
 			//console.log(chunk.toString());
 			info = JSON.parse(chunk);
 			//console.log("CHECK: " + info.id);
@@ -609,8 +632,11 @@ var server = http.createServer(function(req, res)
 		var info;
 		var ans2;
 		a = achieve;
+
+
 		req.on('data' , function(chunk){
-			//console.log(chunk.toString());
+
+			console.log(chunk.toString());
 			info = JSON.parse(chunk);
 			//console.log("CHECK: " + info.id);
 			
@@ -668,23 +694,22 @@ var server = http.createServer(function(req, res)
 	}
 	else if (uri == "/scoutswithnoparent")
 	{
-
+		console.log("in function for no parent");
 		var info;
 		var ans2;
 		a = achieve;
-		req.on('data' , function(chunk){
 			//console.log(chunk.toString());
-			info = JSON.parse(chunk);
 			//console.log("CHECK: " + info.id);
 			
 			res.writeHead(200);
+			console.log("in function for no parent");
+
 			selectBatman(connection, function(sendjson){
 				console.log("PRINTING SCOUTLIST RESULTS");
 				console.log(sendjson.status);
 
 				res.end(JSON.stringify(sendjson));
-			});
-			
+						
 		});
 	}
 	else if (uri == "/addrecord")
@@ -760,9 +785,9 @@ var server = http.createServer(function(req, res)
 		res.end('Hello Http');
 	}
 
-	
+	}
 });
-server.listen(8080);
+server.listen(8084);
 
 //console.log("AFTER SCOUT");
 

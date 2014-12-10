@@ -167,5 +167,11 @@ factory('FakeData', [ function() {
             return currentUser;
         }
     };
+}]).
+factory('Test', ['$resource', function($resource) {
+    return $resource('http://localhost:8084/scoutswithnoparent', {});
+}]).
+factory('Test2', ['$resource', function($resource) {
+    return $resource('http://localhost:8084/registerscout', {});
 }]);
 
