@@ -4,12 +4,12 @@
   </h1>
   <p class="lead">
     <div ng-show="user.message != null" style="color:red">{{user.message}}</div>
+  <img class="leftImage" src="images/wolf.png" alt="I'm a wolf">
+  <img class="rightImage" src="images/bear.png" alt="I'm a bear">
     <div class="inputField"><span>Username: </span> <input class="fRight" type="text" ng-model="user.username"></div>
     <div class="inputField"><span>Password: </span><input class="fRight" type="password" ng-model="user.password"></div>
     <div class="clear"></div>
   </p>
-  <img class="leftImage" src="images/wolf.png" alt="I'm a wolf">
-  <img class="rightImage" src="images/bear.png" alt="I'm a bear">
   <p>
     <div class="btn btn-lg btn-success" ng-click="login()">
       Sign In
