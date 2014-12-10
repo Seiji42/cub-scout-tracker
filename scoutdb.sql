@@ -19,10 +19,10 @@
 -- Table structure for table `activity`
 --
 
-DROP TABLE IF EXISTS `achievement`;
+/*DROP TABLE IF EXISTS `achievement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `achievement` (
+/*CREATE TABLE `achievement` (
   `name` varchar(30) NOT NULL,
   `description` varchar(30) NOT NULL,
   `category_id` int(10) unsigned NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE `adult` (
   `leader_type` varchar(30) DEFAULT NULL,
   `rank_type` varchar(30) NULL,
   `phone_number` varchar(30) NULL,
-  'email' varchar(30) NULL,
+  `email` varchar(30) NULL,
   `adult_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`adult_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -76,10 +76,10 @@ UNLOCK TABLES;
 -- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `category`;
+/*DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `category` (
+/*CREATE TABLE `category` (
   `name` varchar(30) NOT NULL,
   `description` varchar(30) NOT NULL,
   `rank_id` int(10) unsigned NOT NULL,
@@ -152,10 +152,10 @@ UNLOCK TABLES;
 -- Table structure for table `requirement`
 --
 
-DROP TABLE IF EXISTS `requirement`;
+/*DROP TABLE IF EXISTS `requirement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `requirement` (
+/*CREATE TABLE `requirement` (
   `name` varchar(30) NOT NULL,
   `description` varchar(30) NOT NULL,
   `achievement_id` int(10) unsigned NOT NULL,
