@@ -57,6 +57,7 @@ CREATE TABLE `adult` (
   `leader_type` varchar(30) DEFAULT NULL,
   `rank_type` varchar(30) NULL,
   `phone_number` varchar(30) NULL,
+  'email' varchar(30) NULL,
   `adult_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`adult_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
