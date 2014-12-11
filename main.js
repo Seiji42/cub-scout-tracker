@@ -142,6 +142,228 @@ achievement11 = {name: "Making Choices", num : 12, requirements:[], 			numelec: 
 
 	achieve.wolf = [achievement0, achievement1, achievement2, achievement3, 	   achievement4, achievement5, achievement6, achievement7, achievement8, achievement9, achievement10, achievement11];
 
+	
+	
+	
+	
+	
+	achievementB1 = {name: "Ways We Worship", num : 1, requirements : [],numelec:0 };
+	
+	ra = {name : "a", description : "Complete the Character Connection for Faith", required :true , date : "", dbID : 75};
+	rb = {name : "b", description : "Make a list of things you can do this week to practice your religion as you are taught in your home, church, synagogue, mosque, or other religious community. Check them off your list as you complete them.", required :true , date : "", dbID : 76};
+	achievementB1.requirements = [ra, rb];
+	
+	achievementB2 = {name: "Emblems of Faith", num : 2, requirements : [],numelec:0 };
+	ra = {name : "a", description : "Earn the religious emblem of your faith.", required :true , date : "", dbID : 77};
+	achievementB2.requirements = [ra];
+	
+	achievementB3 = {name: "What Makes America Special", num : 3, requirements : [],numelec:2 };
+	ra = {name : "a", description : "Write or tell what makes America special to you.", required :true , date : "", dbID : 78};
+	rb = {name : "b", description : "With the help of your family or den leader, find out about two famous Americans. Tell the things they did or are doing to improve our way of life.", required :false , date : "", dbID : 79};
+	rc = {name : "c", description : "Find out something about the old homes near where you live. Go and see two of them.", required :false , date : "", dbID : 80};
+	rd = {name : "d", description : "Find out where places of historical interest are located in or near your town or city. Go and visit one of them with your family or den.", required :false , date : "", dbID : 81};
+	re = {name : "e", description : "Choose a state; it can be your favorite one or your home state. Name its state bird, tree, and flower. Describe its flag. Give the date it was admitted to the Union.", required :false , date : "", dbID : 82};
+	rf = {name : "f", description : "Be a member of the color guard in a flag ceremony for your den or pack.", required :false , date : "", dbID : 83};
+	rg = {name : "g", description : "Display the U.S. flag in your home or fly it on three national holidays.", required :false , date : "", dbID : 84};
+	rh = {name : "h", description : "Learn how to raise and lower a U.S. flag properly for an outdoor ceremony.", required :false , date : "", dbID : 85};
+	ri = {name : "i", description : "Participate in an outdoor flag ceremony.", required :false , date : "", dbID : 86};
+	rj = {name : "j", description : "Complete the Character Connection for Citizenship.", required :true , date : "", dbID : 87};
+	achievementB3.requirements = [ra, rb, rc, rd, re, rf, rg, rh, ri, rj];
+	
+	achievementB4 = {name: "Tall Tales", num : 4, requirements : [],numelec:0 };
+	ra = {name : "a", description : "Tell in your own words what folklore is. List some folklore stories, folk songs, or historical legends from your own state or part of the country. Play the Folklore Match Game on page 48.", required :true , date : "", dbID : 88};
+	rb = {name : "b", description : "Name at least five stories about American folklore. Point out on a United States map where they happened.", required :true , date : "", dbID : 89};
+	rc = {name : "c", description : "Read two folklore stories and tell your favorite one to your den.", required :true , date : "", dbID : 90};
+	achievementB4.requirements = [ra,rb,rc];
+	
+	achievementB5 = {name: "Sharing Your World With Wildlife", num : 5, requirements : [],numelec:4 };
+	ra = {name : "a", description : "Choose a bird or animal that you like and find out how it lives. Make a poster showing what you have learned.", required :false , date : "", dbID : 91};
+	rb = {name : "b", description : "Build or make a bird feeder or birdhouse and hang it in a place where birds can visit safely.", required :false , date : "", dbID : 92};
+	rc = {name : "c", description : "Explain what a wildlife conservation officer does.", required :false , date : "", dbID : 93};
+	rd = {name : "d", description : "Visit one of the following: Zoo, Nature center, Aviary, Wildlife refuge, Game preserve.", required :false , date : "", dbID : 94};
+	re = {name : "e", description : "Name one animal that has become extinct in the last 100 years. Tell why animals become extinct. Name one animal that is on the endangered species list.", required :false , date : "", dbID : 95};
+	achievementB5.requirements = [ra, rb, rc, rd, re];
+	
+	achievementB6 = {name: "Take Care of Your Planet", num : 6, requirements : [],numelec:3 };
+	ra = {name : "a", description : "Save 5 pounds of glass or aluminum, or 1 month of daily newspapers. Turn them in at a recycling center or use your community's recycling service.", required :false , date : "", dbID : 96};
+	rb = {name : "b", description : "Plant a tree in your yard, or on the grounds of the group that operates your Cub Scout pack, or in a park or other public place. Be sure to get permission first.", required :false , date : "", dbID : 97};
+	rc = {name : "c", description : "Call city or county officials or your trash hauling company and find out what happens to your trash after it is hauled away.", required :false , date : "", dbID : 98};
+	rd = {name : "d", description : "List all the ways water is used in your home. Search for dripping faucets or other ways water might be wasted. With an adult, repair or correct those problems.", required :false , date : "", dbID : 99};
+	re = {name : "e", description : "Discuss with an adult in your family the kinds of energy your family uses.", required :false , date : "", dbID : 100};
+	rf = {name : "f", description : "Find out more about your family's use of electricity.", required :false , date : "", dbID : 101};
+	rg = {name : "g", description : "Take part in a den or pack neighborhood clean-up project.", required :false , date : "", dbID : 102};
+	achievementB6.requirements = [ra, rb, rc, rd, re, rf, rg];
+	
+	achievementB7 = {name: "Law Enforcement is a Big Job", num : 7, requirements : [],numelec:0 };
+	ra = {name : "a", description : "Practice one way police gather evidence: by taking fingerprints, or taking shoeprints, or taking tire track casts.", required :true , date : "", dbID : 103};
+	rb = {name : "b", description : "Visit your local sheriff's office or police station or talk with a law enforcement officer visiting your den or pack to discuss crime prevention.", required :true , date : "", dbID : 104};
+	rc = {name : "c", description : "Help with crime prevention for your home.", required :true , date : "", dbID : 105};
+	rd = {name : "d", description : "Be sure you know where to get help in your neighborhood.", required :true , date : "", dbID : 106};
+	re = {name : "e", description : "Learn the phone numbers to use in an emergency and post them by each phone in your home.", required :true , date : "", dbID : 107};
+	rf = {name : "f", description : "Know what you can do to help law enforcement.", required :true , date : "", dbID : 108};
+	achievementB7.requirements = [ra, rb, rc, rd, re, rf];
+	
+	achievementB8 = {name: "The Past is Exciting and Important", num : 8, requirements : [],numelec:2 };
+	ra = {name : "a", description : "Visit your library or newspaper office. Ask to see back issues of newspapers or an almanac.", required :false , date : "", dbID : 109};
+	rb = {name : "b", description : "Find someone who was a Cub Scout a long time ago. Talk with him about what Cub Scouting was like then.", required :false , date : "", dbID : 110};
+	rc = {name : "c", description : "Start or add to an existing den or pack scrapbook.", required :false , date : "", dbID : 111};
+	rd = {name : "d", description : "Trace your family back through your grandparents or great-grandparents; or, talk to a grandparent about what it was like when he or she was younger.", required :false , date : "", dbID : 112};
+	re = {name : "e", description : "Find out some history about your community.", required :false , date : "", dbID : 113};
+	rf = {name : "f", description : "Start your own history: keep a journal for 2 weeks.", required :false , date : "", dbID : 114};
+	rg = {name : "g", description : "Complete the Character Connection for Respect.", required :true , date : "", dbID : 115};
+	achievementB8.requirements = [ra, rb, rc, rd, re, rf, rg];
+	
+	achievementB9 = {name: "What's Cooking", num : 9, requirements : [],numelec:4 };
+	ra = {name : "a", description : "With an adult, bake cookies.", required :false , date : "", dbID : 116};
+	rb = {name : "b", description : "With an adult, make snacks for the next den meeting.", required :false , date : "", dbID : 117};
+	rc = {name : "c", description : "With an adult, prepare one part of your breakfast, one part of your lunch, and one part of your supper.", required :false , date : "", dbID : 118};
+	rd = {name : "d", description : "Make a list of the junk foods you eat. Discuss junk food with a parent or teacher.", required :false , date : "", dbID : 119};
+	re = {name : "e", description : "Make some trail food for a hike.", required :false , date : "", dbID : 120};
+	rf = {name : "f", description : "With an adult, make a dessert for your family.", required :false , date : "", dbID : 121};
+	rg = {name : "g", description : "With an adult, cook something outdoors.", required :false , date : "", dbID : 122};
+	achievementB9.requirements = [ra, rb, rc, rd, re, rf, rg];
+	
+	achievementB10 = {name: "Family Fun", num :10 , requirements : [],numelec:0 };
+	ra = {name : "a", description : "Go on a day trip or evening out with members of your family.", required :true , date : "", dbID : 123};
+	rb = {name : "b", description : "Have a family fun night at home.", required :true , date : "", dbID : 124};
+	achievementB10.requirements = [ra, rb];
+	
+	achievementB11 = {name: "Be Ready!", num :11 , requirements : [],numelec:1 };
+	ra = {name : "a", description : "Tell what to do in case of an accident in the home. A family member needs help. Someone's clothes catch on fire.", required :true , date : "", dbID : 125};
+	rb = {name : "b", description : "Tell what to do in case of a water accident.", required :true , date : "", dbID : 126};
+	rc = {name : "c", description : "Tell what to do in case of a school bus accident.", required :true , date : "", dbID : 127};
+	rd = {name : "d", description : "Tell what to do in case of a car accident.", required :true , date : "", dbID : 128};
+	re = {name : "e", description : "With your family, plan escape routes from your home and have a practice drill.", required :true , date : "", dbID : 129};
+	rf = {name : "f", description : "Have a health checkup by a physician.", required :false , date : "", dbID : 130};
+	rg = {name : "g", description : "Complete the Character Connection for Courage.", required :true , date : "", dbID : 131};
+	achievementB11.requirements = [ra, rb, rc, rd, re, rf, rg];
+	
+	achievementB12 = {name: "Family Outdoor Adventure", num :12 , requirements : [],numelec:3 };
+	ra = {name : "a", description : "Go camping with your family.", required :false , date : "", dbID : 132};
+	rb = {name : "b", description : "Go on a hike with your family.", required :false , date : "", dbID : 133};
+	rc = {name : "c", description : "Have a picnic with your family.", required :false , date : "", dbID : 134};
+	rd = {name : "d", description : "Attend an outdoor event with your family.", required :false , date : "", dbID : 135};
+	re = {name : "e", description : "Plan your outdoor family day.", required :false , date : "", dbID : 136};
+	achievementB12.requirements = [ra, rb, rc, rd, re];
+	
+	achievementB13 = {name: "Saving Well, Spending Well", num :13 , requirements : [],numelec:4 };
+	ra = {name : "a", description : "Go grocery shopping with a parent or other adult member of your family.", required :false , date : "", dbID : 137};
+	rb = {name : "b", description : "Set up a savings account.", required :false , date : "", dbID : 138};
+	rc = {name : "c", description : "Keep a record of how you spend money for 2 weeks.", required :false , date : "", dbID : 139};
+	rd = {name : "d", description : "Pretend you are shopping for a car for your family.", required :false , date : "", dbID : 140};
+	re = {name : "e", description : "Discuss family finances with a parent or guardian.", required :false , date : "", dbID : 141};
+	rf = {name : "f", description : "Play a board game with your family that involves the use of play money.", required :false , date : "", dbID : 142};
+	rg = {name : "g", description : "With an adult, figure out how much it costs for each person in your home to eat one meal.", required :false , date : "", dbID : 143};
+	achievementB13.requirements = [ra, rb, rc, rd, re, rf, rg];
+	
+	achievementB14 = {name: "Ride right", num :14 , requirements : [],numelec: 3};
+	ra = {name : "a", description : "Know the rules for bike safety. If your town requires a bicycle license, be sure to get one.", required :true , date : "", dbID : 144};
+	rb = {name : "b", description : "Learn to ride a bike, if you haven't by now. Show that you can follow a winding course for 60 feet doing sharp left and right turns, a U-turn, and an emergency stop.", required :false , date : "", dbID : 145};
+	rc = {name : "c", description : "Keep your bike in good shape. Identify the parts of a bike that should be checked often.", required :false , date : "", dbID : 146};
+	rd = {name : "d", description : "Change a tire on a bicycle.", required :false , date : "", dbID : 147};
+	re = {name : "e", description : "Protect your bike from theft. Use a bicycle lock.", required :false , date : "", dbID : 148};
+	rf = {name : "f", description : "Ride a bike for 1 mile without rest. Be sure to obey all traffic rules.", required :false , date : "", dbID : 149};
+	rg = {name : "g", description : "Plan and take a family bike hike.", required :false , date : "", dbID : 150};
+	achievementB14.requirements = [ra, rb, rc, rd, re, rf, rg];
+	
+	achievementB15 = {name: "Games, Games, Games!", num :15 , requirements : [],numelec: 2};
+	ra = {name : "a", description : "Set up the equipment and play any two of these outdoor games with your family or friends. (Backyard golf, Badminton, Croquet, Sidewalk shuffleboard, Kickball, Softball, Tetherball, Horseshoes, Volleyball)", required :false , date : "", dbID : 151};
+	rb = {name : "b", description : "Play two organized games with your den.", required :false , date : "", dbID : 152};
+	rc = {name : "c", description : "Select a game that your den has never played. Explain the rules. Tell them how to play it, and then play it with them.", required :false , date : "", dbID : 153};
+	achievementB15.requirements = [ra, rb, rc];
+	
+	achievementB16 = {name: "Building Muscles", num :16 , requirements : [],numelec: 0};
+	ra = {name : "a", description : "Do physical fitness stretching exercises. Then do curl-ups, push-ups, the standing long jump, and the softball throw.", required :true , date : "", dbID : 154};
+	rb = {name : "b", description : "With a friend about your size, compete in at least six different two-person contests. (Many examples in book.)", required :true , date : "", dbID : 155};
+	rc = {name : "c", description : "Compete with your den or pack in the crab relay, gorilla relay, 30-yard dash, and kangaroo relay.", required :true , date : "", dbID : 156};
+	achievementB16.requirements = [ra, rb, rc];
+	
+	achievementB17 = {name: "Information Please", num :17 , requirements : [],numelec: 3};
+	ra = {name : "a", description : "With an adult in your family, choose a TV show. Watch it together.", required :true , date : "", dbID : 157};
+	rb = {name : "b", description : "Play a game of charades at your den meeting or with your family at home.", required :false , date : "", dbID : 158};
+	rc = {name : "c", description : "Visit a newspaper office, or a TV or radio station and talk to a news reporter.", required :false , date : "", dbID : 159};
+	rd = {name : "d", description : "Use a computer to get information.  Write, spell-check, and print out a report on what you learned.", required :false , date : "", dbID : 160};
+	re = {name : "e", description : "Write a letter to a company that makes something you use.  Use e-mail or the U.S. Postal Service.", required :false , date : "", dbID : 161};
+	rf = {name : "f", description : "Talk with a parent or other family member about how getting and giving facts fits into his or her job.", required :false , date : "", dbID : 162};
+	achievementB17.requirements = [ra, rb, rc, rd, re, rf];
+	
+	achievementB18 = {name: "Jot it Down", num :18 , requirements : [],numelec: 4 };
+	ra = {name : "a", description : "Make a list of the things you want to do today. Check them off when you have done them.", required :false , date : "", dbID : 163};
+	rb = {name : "b", description : "Write two letters to relatives or friends.", required :false , date : "", dbID : 164};
+	rc = {name : "c", description : "Keep a daily record of your activities for 2 weeks.", required :false , date : "", dbID : 165};
+	rd = {name : "d", description : "Write an invitation to someone.", required :false , date : "", dbID : 166};
+	re = {name : "e", description : "Write a thank-you note.", required :false , date : "", dbID : 167};
+	rf = {name : "f", description : "Write a story about something you have done with your family.", required :false , date : "", dbID : 168};
+	rg = {name : "g", description : "Write about the activities of your den.", required :false , date : "", dbID : 169};
+	rh = {name : "h", description : "Complete the Character Connection for Honesty.", required :true , date : "", dbID : 170};
+	achievementB18.requirements = [ra, rb, rc, rd, re, rf, rg, rh];
+	
+	achievementB19 = {name: "Shaving and Chips", num :19 , requirements : [],numelec:0 };
+	ra = {name : "a", description : "Know the safety rules for handling a knife.", required :true , date : "", dbID : 171};
+	rb = {name : "b", description : "Show that you know how to take care of and use a pocketknife.", required :true , date : "", dbID : 172};
+	rc = {name : "c", description : "Make a carving with a pocketknife. Work with your den leader or other adult when doing this.", required :true , date : "", dbID : 173};
+	rd = {name : "d", description : "Earn the Whittling Chip card.", required :true , date : "", dbID : 174};
+	achievementB19.requirements = [ra, rb, rc, rd];
+	
+	achievementB20 = {name: "Sawdust and Nails", num :20 , requirements : [],numelec: 0};
+	ra = {name : "a", description : "Show how to use and take care of four of these tools. (Hammer, Hand saw, Hand drill, C-clamp, Wood plane, Pliers, Crescent wrench, Screwdriver, Bench vise, Coping saw, Drill bit)", required :true , date : "", dbID : 175};
+	rb = {name : "b", description : "Build your own tool box.", required :true , date : "", dbID : 176};
+	rc = {name : "c", description : "Use at least two tools listed in requirement (a) to fix something.", required :true , date : "", dbID : 177};
+	achievementB20.requirements = [ra, rb, rc];
+	
+	achievementB21 = {name: "Build a Model", num :21 , requirements : [],numelec: 2};
+	ra = {name : "a", description : "Build a model from a kit.", required :false , date : "", dbID : 178};
+	rb = {name : "b", description : "Build a display for one of your models.", required :false , date : "", dbID : 179};
+	rc = {name : "c", description : "Pretend you are planning to change the furniture layout in one of the rooms in your home.", required :false , date : "", dbID : 180};
+	rd = {name : "d", description : "Make a model of a mountain, a meadow, a canyon, or a river.", required :false , date : "", dbID : 181};
+	re = {name : "e", description : "Go and see a model of a shopping center or new building that is on display somewhere.", required :false , date : "", dbID : 182};
+	rf = {name : "f", description : "Make a model of a rocket, boat, car, or plane.", required :false , date : "", dbID : 183};
+	rg = {name : "g", description : "Complete the Character Connection for Resourcefulness.", required :true , date : "", dbID : 184};
+	achievementB21.requirements = [ra, rb, rc, rd, re, rf, rg];
+	
+	achievementB22 = {name: "Tying it All Up", num :22 , requirements : [],numelec: 5};
+	ra = {name : "a", description : "Whip the ends of a rope.", required :false , date : "", dbID : 185};
+	rb = {name : "b", description : "Tie a square knot, bowline, sheet bend, two half hitches, and slip knot.  Tell how each knot is used.", required :false , date : "", dbID : 186};
+	rc = {name : "c", description : "Learn how to keep a rope from tangling.", required :false , date : "", dbID : 187};
+	rd = {name : "d", description : "Coil a rope. Throw it, hitting a 2-foot square marker 20 feet away.", required :false , date : "", dbID : 188};
+	re = {name : "e", description : "Learn a magic rope trick.", required :false , date : "", dbID : 189};
+	rf = {name : "f", description : "Make your own rope.", required :false , date : "", dbID : 190};
+	achievementB22.requirements = [ra, rb, rc, rd, re, rf];
+	
+	achievementB23 = {name: "Sports, Sports, Sports", num :23 , requirements : [],numelec: 0};
+	ra = {name : "a", description : "Learn the rules of and how to play three team sports.", required :true , date : "", dbID : 191};
+	rb = {name : "b", description : "Learn the rules of and how to play two sports in which only one person is on each side.", required :true , date : "", dbID : 192};
+	rc = {name : "c", description : "Take part in one team and one individual sport.", required :true , date : "", dbID : 193};
+	rd = {name : "d", description : "Watch a sport on TV with a parent or some other adult member of your family.", required :true , date : "", dbID : 194};
+	re = {name : "e", description : "Attend a high school, college, or professional sporting event with your family or your den.", required :true , date : "", dbID : 195};
+	achievementB23.requirements = [ra, rb, rc, rd, re];
+	
+	achievementB24 = {name: "Be a Leader", num :24 , requirements : [],numelec: 2};
+	ra = {name : "a", description : "Help a boy join Cub Scouting, or help a new Cub Scout through the Bobcat trail.", required :false , date : "", dbID : 196};
+	rb = {name : "b", description : "Serve as a denner or assistant denner.", required :false , date : "", dbID : 197};
+	rc = {name : "c", description : "Plan and conduct a den activity with the approval of your den leader.", required :false , date : "", dbID : 198};
+	rd = {name : "d", description : "Tell two people they have done a good job.", required :false , date : "", dbID : 199};
+	re = {name : "e", description : "Leadership means choosing a way even when not everybody likes your choice.", required :false , date : "", dbID : 200};
+	rf = {name : "f", description : "Complete the Character Connection for Compassion.", required :true, date : "", dbID : 201};
+	achievementB24.requirements = [ra, rb, rc, rd, re, rf];
+	
+	array_BearAchievements1=[achievementB1, achievementB2];
+	array_BearAchievements2=[achievementB3, achievementB4,achievementB5,achievementB6,achievementB7];
+	array_BearAchievements3=[achievementB8,achievementB9,achievementB10,achievementB11,achievementB12,achievementB13];
+	array_BearAchievements4=[achievementB14,achievementB15,achievementB16,achievementB17,achievementB18,achievementB19,achievementB20,achievementB21,achievementB22,achievementB23,achievementB24];
+	CategoryB1 = {Name: "GOD",     Achievements: array_BearAchievements1,numelec: 1};
+	CategoryB2 = {Name: "COUNTRY", Achievements: array_BearAchievements2,numelec: 3};
+	CategoryB3 = {Name: "FAMILY",  Achievements: array_BearAchievements3,numelec: 4};
+	CategoryB4 = {Name: "SELF",    Achievements: array_BearAchievements4,numelec: 4};
+	
+	Categories=[categoryB1,categoryB2,categoryB3,categoryB4];
+	
+	achieve.bear=Categories;
+	
+	
+	
+	
+	
 	//console.log(achieve.wolf[0].requirements[0].description);
 
 	return achieve;
