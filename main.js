@@ -356,7 +356,7 @@ achievement11 = {name: "Making Choices", num : 12, requirements:[], 			numelec: 
 	CategoryB3 = {Name: "FAMILY",  Achievements: array_BearAchievements3,numelec: 4};
 	CategoryB4 = {Name: "SELF",    Achievements: array_BearAchievements4,numelec: 4};
 	
-	Categories=[categoryB1,categoryB2,categoryB3,categoryB4];
+	Categories=[CategoryB1,CategoryB2,CategoryB3,CategoryB4];
 	
 	achieve.bear=Categories;
 	
