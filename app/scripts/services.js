@@ -168,10 +168,12 @@ factory('FakeData', [ function() {
         }
     };
 }]).
-factory('Test', ['$resource', function($resource) {
+factory('GetScoutNoParentService', ['$resource', function($resource) {
     return $resource('http://localhost:8084/scoutswithnoparent', {});
 }]).
-factory('Test2', ['$resource', function($resource) {
+factory('RegisterScoutService', ['$resource', function($resource) {
     return $resource('http://localhost:8084/registerscout', {});
+}]).
+factory('RegisterAdultService', ['$resource', function($resource) {
+    return $resource('http://localhost:8084/registeradult', {});
 }]);
-

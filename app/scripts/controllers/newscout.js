@@ -8,7 +8,7 @@
  * Controller of the cubScoutTrackerApp
  */
 angular.module('cubScoutTrackerApp')
-  .controller('RegisterScoutCtrl', ['$scope', 'Test2', 'FakeData', function ($scope, Test2, FakeData) {
+  .controller('RegisterScoutCtrl', ['$scope', '$location', '$window', 'RegisterScoutService', function ($scope, $location, $window, RegisterScoutService) {
 
     $scope.group = "";
     $scope.firstName = "";
@@ -32,8 +32,11 @@ angular.module('cubScoutTrackerApp')
             pack_number: $scope.packNum
         };
 
-        Test2.save(toSend, function(result) {
-            console.log(result);
+        RegisterScoutService.save(toSend, function(result) {
+            if(result.status === "OK")
+                $location.path("/info");
+            else
+                $window.alert("There was an error registering the new scout.  Please try again.");
         });
     }
 

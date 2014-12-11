@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cubScoutTrackerApp')
-  .controller('RegisterCtrl', ['$scope', 'FakeData', function ($scope, FakeData) {
+  .controller('RegisterCtrl', ['$scope', 'FakeData', 'GetScoutNoParentService', function ($scope, FakeData, GetScoutNoParentService) {
     $scope.username = "";
     $scope.password = "";
     $scope.confirmPass = "";
@@ -14,11 +14,32 @@ angular.module('cubScoutTrackerApp')
     $scope.leaderPhoneNumber = "";
     $scope.leaderGroup = "";
     $scope.selectedScoutIDs = [];
+    $scope.scouts = [];
     //The following will eventually be obtained from the database
-    $scope.wolfScouts = FakeData.getScoutsByGroup("Wolf");
-    $scope.bearScouts = FakeData.getScoutsByGroup("Bear");
-    $scope.webelosScouts = FakeData.getScoutsByGroup("Webelos");
+    $scope.wolfScouts = [];
+    $scope.bearScouts = [];
+    $scope.webelosScouts = [];
     
+    $scope.getScoutsByGroup = function(group) {
+        var scoutsByGroup = [];
+        for(var i=0; i<$scope.scouts.length; i++) {
+            if($scope.scouts[i].rank_type === group) {
+                scoutsByGroup.push($scope.scouts[i]);
+            }
+        }
+        console.log(scoutsByGroup);
+        return scoutsByGroup;
+    };
+
+    $scope.getScouts = function() {
+        var results = GetScoutNoParentService.get(function() {
+            $scope.scouts = results.scout;
+            console.log($scope.scouts);
+        });
+    }; 
+
+    $scope.getScouts();
+
     $scope.selectLeader = function() {
         $scope.isLeader = true;
         $scope.isParent = false;
@@ -27,6 +48,10 @@ angular.module('cubScoutTrackerApp')
     $scope.selectParent = function() {
         $scope.isParent = true;
         $scope.isLeader = false;
+        console.log($scope.scouts.length);
+        $scope.wolfScouts = $scope.getScoutsByGroup("Wolf");
+        $scope.bearScouts = $scope.getScoutsByGroup("Bear");
+        $scope.webelosScouts = $scope.getScoutsByGroup("Webelos");
     };
 
     $scope.selectScout = function(scout) {
