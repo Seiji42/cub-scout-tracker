@@ -185,4 +185,7 @@ factory('UpdateScoutLeaderService', ['$resource', function($resource) {
 }]).
 factory('GetLeaderService', ['$resource', function($resource) {
     return $resource('http://localhost:8084/getleader', {});
+}]).
+factory('VerifyUserService', ['$resource', function($resource) {
+    return $resource('http://localhost:8084/verifypassword', {});
 }]);

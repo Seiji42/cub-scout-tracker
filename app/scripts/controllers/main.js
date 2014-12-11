@@ -8,7 +8,7 @@
  * Controller of the cubScoutTrackerApp
  */
 angular.module('cubScoutTrackerApp')
-  .controller('MainCtrl', ['$scope', '$location', 'FakeData', function ($scope, $location, FakeData) {
+  .controller('MainCtrl', ['$scope', '$location', 'FakeData', 'VerifyUserService', function ($scope, $location, FakeData, VerifyUserService) {
   	$scope.user = {
   		username:'',
   		password:'',
@@ -16,19 +16,23 @@ angular.module('cubScoutTrackerApp')
   	};
 
   	$scope.login = function() {
-  		debugger
   		$scope.user.message = null;
   		if($scope.user.username != '' && $scope.user.password != '') {
-  			$scope.user = FakeData.verify($scope.user);
-			if($scope.user.status === 'verified') {
-				$location.path('/info');
-	  		}
-	  		else {
-	  			$scope.user.message = "Invalid username or password"
-	  		}
-  		}
-  		else {
-  			$scope.user.message = "Please input a username and a password"
-  		}
-  	}
+        var toSend = {
+          username: $scope.user.username,
+          password: $scope.user.password
+        };
+        VerifyUserService.save(toSend, function(result) {
+          if(result.status === 'OK') {
+            $location.path('/info');
+          }
+          else {
+            $scope.user.message = "Invalid username or password"
+          }
+        });
+      }
+      else {
+        $scope.user.message = "Please input a username and a password"
+      }
+    }
   }]);
