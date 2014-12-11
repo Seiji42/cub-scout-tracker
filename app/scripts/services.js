@@ -182,4 +182,7 @@ factory('AddParentIDService', ['$resource', function($resource) {
 }]).
 factory('UpdateScoutLeaderService', ['$resource', function($resource) { 
     return $resource('http://localhost:8084/updatescoutleader', {});
+}]).
+factory('GetLeaderService', ['$resource', function($resource) {
+    return $resource('http://localhost:8084/getleader', {});
 }]);

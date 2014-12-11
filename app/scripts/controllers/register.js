@@ -130,9 +130,10 @@ angular.module('cubScoutTrackerApp')
                             rank_type: $scope.selectedScouts[i].rank_type,
                             scout_id: $scope.selectedScouts[i].scout_id,
                             parent_id: result.adult_id,
+                            leader_id: $scope.selectedScouts[i].leader_id
                         };
                         AddParentIDService.save(scoutToSend, function(result) {
-                            console.log("Parent adssigned to " + scoutToSend.first_name);
+                            console.log("Parent assigned to " + scoutToSend.first_name);
                         });
                     }
                 }

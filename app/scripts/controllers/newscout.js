@@ -8,7 +8,7 @@
  * Controller of the cubScoutTrackerApp
  */
 angular.module('cubScoutTrackerApp')
-  .controller('RegisterScoutCtrl', ['$scope', '$location', '$window', 'RegisterScoutService', function ($scope, $location, $window, RegisterScoutService) {
+  .controller('RegisterScoutCtrl', ['$scope', '$location', '$window', 'RegisterScoutService', 'GetLeaderService', 'UpdateScoutLeaderService', function ($scope, $location, $window, RegisterScoutService, GetLeaderService, UpdateScoutLeaderService) {
 
     $scope.group = "";
     $scope.firstName = "";
@@ -34,7 +34,35 @@ angular.module('cubScoutTrackerApp')
 
         RegisterScoutService.save(toSend, function(result) {
             if(result.status === "OK")
-                $location.path("/info");
+            {
+                var prevResult = result;
+                var leaderQuery = {
+                    rank_type: $scope.group,
+                    pack_number: $scope.packNum
+                };
+                var leaders = [];
+                GetLeaderService.save(leaderQuery, function(result) {
+                   if(result.status == "OK")
+                   {
+                        leaders = result.leaders;
+                        var scoutToSend = {
+                            first_name: $scope.firstName,
+                            last_name: $scope.lastName,
+                            birth_date: $scope.birthdate,
+                            pack_number: $scope.packNum,
+                            rank_type: $scope.group,
+                            scout_id: prevResult.scout_id,
+                            parent_id: null,
+                            leader_id: leaders[0].adult_id
+                        };
+                        console.log(scoutToSend);
+                        UpdateScoutLeaderService.save(scoutToSend, function(result) {
+                            console.log("Leader assigned to " + scoutToSend.first_name);
+                        });
+                    }
+                });
+                //$location.path("/info");
+            }
             else
                 $window.alert("There was an error registering the new scout.  Please try again.");
         });
