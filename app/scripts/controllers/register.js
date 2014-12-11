@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cubScoutTrackerApp')
-  .controller('RegisterCtrl', ['$scope', '$window', 'FakeData', 'GetScoutNoParentService', 'RegisterAdultService', 'AddParentIDService', function ($scope, $window, FakeData, GetScoutNoParentService, RegisterAdultService, AddParentIDService) {
+  .controller('RegisterCtrl', ['$scope', '$window', 'FakeData', 'GetScoutNoParentService', 'RegisterAdultService', 'AddParentIDService', 'UpdateScoutLeaderService', function ($scope, $window, FakeData, GetScoutNoParentService, RegisterAdultService, AddParentIDService, UpdateScoutLeaderService) {
     $scope.username = "";
     $scope.password = "";
     $scope.confirmPass = "";
@@ -129,7 +129,7 @@ angular.module('cubScoutTrackerApp')
                             pack_number: $scope.selectedScouts[i].pack_number,
                             rank_type: $scope.selectedScouts[i].rank_type,
                             scout_id: $scope.selectedScouts[i].scout_id,
-                            parent_id: result.parent_id
+                            parent_id: result.adult_id,
                         };
                         AddParentIDService.save(scoutToSend, function(result) {
                             console.log("Parent adssigned to " + scoutToSend.first_name);
@@ -140,22 +140,23 @@ angular.module('cubScoutTrackerApp')
                 {
                     for(var i=0; i<$scope.scouts.length; i++)
                     {
-                        if($scope.scouts[i].rank_type === $scope.leaderGroup)
+                        if($scope.scouts[i].rank_type === $scope.leaderGroup && $scope.scouts[i].pack_number === $scope.packNum)
                         {
                             //This is where we would assign all the scouts to a leader id
-                            /*
+                            
                             var scoutToSend = {
-                                first_name: $scope.selectedScouts[i].first_name,
-                                last_name: $scope.selectedScouts[i].last_name,
-                                birth_date: $scope.selectedScouts[i].birth_date,
-                                pack_number: $scope.selectedScouts[i].pack_number,
-                                rank_type: $scope.selectedScouts[i].rank_type,
-                                scout_id: $scope.selectedScouts[i].scout_id,
-                                parent_id: result.parent_id
+                                first_name: $scope.scouts[i].first_name,
+                                last_name: $scope.scouts[i].last_name,
+                                birth_date: $scope.scouts[i].birth_date,
+                                pack_number: $scope.scouts[i].pack_number,
+                                rank_type: $scope.scouts[i].rank_type,
+                                scout_id: $scope.scouts[i].scout_id,
+                                parent_id: $scope.scouts[i].parent_id,
+                                leader_id: result.adult_id
                             };
-                            AddParentIDService.save(scoutToSend, function(result) {
+                            UpdateScoutLeaderService.save(scoutToSend, function(result) {
                                 console.log("Parent assigned to " + scoutToSend.first_name);
-                            });*/
+                            });
                         }
                     }
                 }

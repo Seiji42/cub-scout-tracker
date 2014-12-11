@@ -566,7 +566,7 @@ function insertAdult(firstName, lastName, username, password, packNumber,
 						//console.log(rows);
 					}
 			console.log("Checking insertid: " + rows.insertID);
-					returnme = {first_name : firstName, last_name : lastName, username : username, pack_number : packNumber, leader_type : leaderType, rank_type : rankType, parent_id : rows.insertId, status : "OK"}
+					returnme = {first_name : firstName, last_name : lastName, username : username, pack_number : packNumber, leader_type : leaderType, rank_type : rankType, adult_id : rows.insertId, status : "OK"}
 					cb(returnme);
 				}
 			});
@@ -592,19 +592,28 @@ function insertAdult(firstName, lastName, username, password, packNumber,
 }
 
 function updateScout(firstName, lastName, birthDate,packNumber, 
-		rankType, parentID, scoutID, connection, cb)
+		rankType, parentID, scoutID, leaderID, connection, cb)
 {
 	console.log(firstName + " " + lastName + " " + birthDate + " " + packNumber + " " + rankType);
-	console.log(parentID + " " + scoutID);
+	console.log(parentID + " " + scoutID + " " + leaderID);
+	if(leaderID == null)
+		leaderID = "NULL";
+	else
+		leaderID = "'" + leaderID + "'";
+	if(parentID == null)
+		parentID = "NULL";
+	else
+		parentID = "'" + parentID + "'";
 	var strQuery = "UPDATE scout SET "+
 	"first_name= '"     + firstName  +
 	"', last_name='"    + lastName   +
 	"', birth_date='"   + birthDate  + 
 	"', pack_number='"  + packNumber + 
 	"', rank_type='"    + rankType  +
-	"', parent_id='"    + parentID   +
-	"', leader_id= NULL"    + 
+	"', parent_id="    + parentID   +
+	", leader_id="    + leaderID  + 
 	" WHERE scout_id="+ scoutID;
+	console.log(strQuery);
 	connection.query( strQuery, function(err, rows)
 			{if(err) {
 				throw err;
@@ -885,7 +894,27 @@ var server = http.createServer(function(req, res)
 			//console.log("CHECK: " + info.id);
 			
 			res.writeHead(200);
-			updateScout(info.first_name, info.last_name, info.birth_date, info.pack_number, info.rank_type, info.parent_id, info.scout_id, connection, function(sendjson){
+			updateScout(info.first_name, info.last_name, info.birth_date, info.pack_number, info.rank_type, info.parent_id, info.scout_id, null, connection, function(sendjson){
+				console.log("PRINTING UPDATE SCOUT RESULTS");
+				console.log(sendjson.status);
+
+				res.end(JSON.stringify(sendjson));
+			});
+			
+		});
+	}
+	else if (uri == "/updatescoutleader")
+	{
+		var info;
+		var ans2;
+		a = achieve;
+		req.on('data' , function(chunk){
+			//console.log(chunk.toString());
+			info = JSON.parse(chunk);
+			//console.log("CHECK: " + info.id);
+			
+			res.writeHead(200);
+			updateScout(info.first_name, info.last_name, info.birth_date, info.pack_number, info.rank_type, info.parent_id, info.scout_id, info.leader_id, connection, function(sendjson){
 				console.log("PRINTING UPDATE SCOUT RESULTS");
 				console.log(sendjson.status);
 
