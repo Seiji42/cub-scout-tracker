@@ -8,17 +8,18 @@
 <button class='tab', ng-repeat='scout in scoutList' ng-click='changeScout(scout.scout_id)'>{{scout.first_name}} {{scout.last_name}}</button>
 
 <br>
-
 <div ng-repeat="category in scout.ach.wolf" ng-show="scout.rank == 'Wolf'">
     <br>
     <p><b><u>{{category.name}}</u></b></p>
     <div ng-repeat="requirement in category.requirements">
         <p><b>{{category.num}}{{requirement.name}}: {{ requirement.description}}</b></p>
-        <div> 
+        <form> 
             <label style="font-weight:normal">Date Completed: </label>
-            <input type="text" name="date" ng-show="!requirement.date_completed"></input>
+            <input type="text" name="date" ng-show="!requirement.date_completed" ng-model="requirement.completion_date"></input>
+            <button class='send', ng-click="submitDate('Wolf', scout.scout_id, requirement.dbID, requirement.completion_date)" ng-show="!requirement.date_completed">Submit</button>
             <p ng-show="requirement.date_completed"><em>{{requirement.completion_date}}</em></p>
-        </div>
+        </form>
+        <br>
     </div>
 </div>
 
@@ -30,11 +31,12 @@
         <p><b><u>{{achievement.name}}</u></b></p>
         <div ng-repeat="requirement in achievement.requirements">
             <p><b>{{achievement.num}}{{requirement.name}}: {{requirement.description}}</b></p>
-            <div> 
+            <form> 
                 <label style="font-weight:normal">Date Completed: </label>
                 <input type="text" name="date" ng-show="!requirement.date_completed"></input>
                 <p ng-show="requirement.date_completed"><em>{{requirement.completion_date}}</em></p>
-            </div>
+            </form>
+            <br>
         </div>
     </div>
 </div>

@@ -207,4 +207,7 @@ factory('ViewScoutsService', ['$resource', function($resource) {
 }]).
 factory('ScoutInfoService', ['$resource', function($resource) {
     return $resource('http://localhost:8084/scoutinfo', {});
+}]).
+factory('SubmitDateService', ['$resource', function($resource) {
+    return $resource('http://localhost:8084/addrecord', {});
 }]);

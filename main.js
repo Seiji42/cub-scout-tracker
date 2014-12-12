@@ -636,11 +636,11 @@ function updateScout(firstName, lastName, birthDate,packNumber,
 function insertRecord(recordRankType, dateDone,requirementID, 
 		scoutID, connection, cb)
 {
-	var strQuery = "INSERT INTO record  VALUES('"+
+	var strQuery = "INSERT INTO record(record_rank_type, date_done, requirement_id, scout_id) VALUES('"+
 	recordRankType            +"', '"+  
 	dateDone                  +"', '"+
 	requirementID             +"', '"+
-	scoutID                   +"', 'NULL')";
+	scoutID                   +"')";
 
 	connection.query( strQuery, function(err, rows)
 			{if(err) {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cubScoutTrackerApp')
-  .controller('RegisterCtrl', ['$scope', '$window', 'FakeData', 'GetScoutNoParentService', 'RegisterAdultService', 'AddParentIDService', 'UpdateScoutLeaderService', function ($scope, $window, FakeData, GetScoutNoParentService, RegisterAdultService, AddParentIDService, UpdateScoutLeaderService) {
+  .controller('RegisterCtrl', ['$scope', '$window', 'GetScoutNoParentService', 'RegisterAdultService', 'AddParentIDService', 'UpdateScoutLeaderService', function ($scope, $window, GetScoutNoParentService, RegisterAdultService, AddParentIDService, UpdateScoutLeaderService) {
     $scope.username = "";
     $scope.password = "";
     $scope.confirmPass = "";
