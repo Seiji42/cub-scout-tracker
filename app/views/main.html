@@ -1,23 +1,40 @@
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
+  <h1>
+    Welcome!
+  </h1>
   <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
+    <div ng-show="user.message != null" style="color:red">{{user.message}}</div>
+  <img class="leftImage" src="images/wolf.png" alt="I'm a wolf">
+  <img class="rightImage" src="images/bear.png" alt="I'm a bear">
+    <div class="inputField"><span>Username: </span> <input class="fRight" type="text" ng-model="user.username"></div>
+    <div class="inputField"><span>Password: </span><input class="fRight" type="password" ng-model="user.password"></div>
+    <div class="clear"></div>
   </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+  <p>
+    <div class="btn btn-lg btn-success" ng-click="login()">
+      Sign In
+      <span class="glyphicon glyphicon-ok"></span>
+    </div>
+    <a class="btn btn-lg btn-success" ng-href="#/register">
+      Register
+      <span class="glyphicon glyphicon-ok"></span>
+    </a>
+  </p>
 </div>
 
+<!--
 <div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
+  <h4>About</h4>
   <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+    This website is here to help you keep track of your cub scout's progress.
   </p>
 
-  <h4>Angular</h4>
+  <h4>Current Features</h4>
   <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
+    Currently, you can pull up records for each of your scouts and add accomplishments.
   </p>
 
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+  <h4>Future Updates</h4>
+  <p>We will be adding requirements for webelos scouts soon.</p>
 </div>
+-->

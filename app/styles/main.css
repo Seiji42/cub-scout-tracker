@@ -15,6 +15,12 @@ body {
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
+  background-color:#287FE8;
+  color: white;
+}
+.header button {
+  background-color: #297FE8;
+  float:right;
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -40,15 +46,38 @@ body {
 .container-narrow > hr {
   margin: 30px 0;
 }
+.inputField {
+  width: 300px;
+  margin: 10px auto;
+}
+
+.fLeft {
+  float:left;
+}
+.fRight {
+  float:right;
+}
+.clear {
+  clear:both;
+}
+
+.leftImage, .rightImage {
+  height: 200px;
+}
 
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  background-color: #D7daab ;
 }
 .jumbotron .btn {
   font-size: 21px;
-  padding: 14px 24px;
+  /*padding: 14px 24px;*/
+}
+
+.inputDiv {
+  margin: 10px;
 }
 
 /* Supporting marketing content */
@@ -75,34 +104,5 @@ body {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
-  }
-
-  /*Registration CSS */
-  .inputDiv, .leaderDiv, .parentDiv {
-    margin-left: 20px;
-    margin-bottom: 20px;
-  }
-
-  .inputDiv input {
-    display: inline-block;
-    width: 150px;
-    text-align: center;
-  }
-
-  .inputDiv label {
-    display: inline-block;
-    width: 150px;
-    text-align: right;
-  }
-  .radioSelectDiv .radio {
-    text-align: left;
-    margin-bottom: 20px;
-    margin-left: 150px;
-  }
-
-  .submitDiv {
-    text-align: left;
-    margin-bottom: 20px;
-    margin-left: 175px;
   }
 }

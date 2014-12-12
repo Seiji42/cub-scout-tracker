@@ -1,0 +1,37 @@
+<div class="jumbotron">
+<form>
+    <div class="header">
+        <h2>New Scout Registration</h2>
+    </div>
+    <div class="inputDiv">
+        <label>First Name: </label>
+        <input type="text" name="firstname" placeHolder="First" ng-model="firstName"></input>
+    </div>
+    <div class="inputDiv">
+        <label>Last Name: </label>
+        <input type="text" name="lastname" placeholder="Last" ng-model="lastName"></input>
+    </div>
+    <div class="inputDiv">
+        <label>Birthdate: </label>
+        <input type="text" name="birthdate" placeholder="mm/dd/yyyy" ng-model="birthdate"></input>
+    </div>
+    <div class="inputDiv">
+        <label>Pack #: </label>
+        <input type="text" name="packNum" placeholder="####" ng-model="packNum"></input>
+    </div>
+
+    <div class="inputDiv">
+        <label>Select group: </label>
+        <select name="group" ng-model="group">
+            <option>Wolf</option>
+            <option>Bear</option>
+            <option>Webelos</option>
+        </select>
+    </div>
+            
+    <div class="submitDiv">
+        <br>
+        <a class="btn btn-lg btn-success" ng-click="submitInfo()" ng-show="canSubmit()">Submit</a>
+    </div>
+</form>
+</div>

@@ -1,0 +1,43 @@
+<div class="registerNewScout" ng-show="currentUser.leader_type === 'leader'">
+<a class="btn btn-lg" ng-href="#/newscout">
+      Register New Scout
+    </a>
+</div>
+<br>
+
+<button class='tab', ng-repeat='scout in scoutList' ng-click='changeScout(scout.scout_id)'>{{scout.first_name}} {{scout.last_name}}</button>
+
+<br>
+<div ng-repeat="category in scout.ach" ng-show="scout.rank == 'Wolf'">
+    <br>
+    <p><b><u>{{category.name}}</u></b></p>
+    <div ng-repeat="requirement in category.requirements">
+        <p><b>{{category.num}}{{requirement.name}}: {{ requirement.description}}</b></p>
+        <form> 
+            <label style="font-weight:normal">Date Completed: </label>
+            <input type="text" name="date" ng-show="!requirement.date" ng-model="requirement.newDate"></input>
+            <button class='send', ng-click="submitDate('Wolf', scout.scout_id, requirement.dbID, requirement.newDate)" ng-show="!requirement.date">Submit</button>
+            <p ng-show="requirement.date"><em>{{requirement.date}}</em></p>
+        </form>
+        <br>
+    </div>
+</div>
+
+<div ng-repeat="category in scout.ach" ng-show="scout.rank == 'Bear'">
+    <br><br>
+    <p><b><em>***{{category.Name}}***</em></b></p>
+    <div ng-repeat="achievement in category.achievements">
+        <br>
+        <p><b><u>{{achievement.name}}</u></b></p>
+        <div ng-repeat="requirement in achievement.requirements">
+            <p><b>{{achievement.num}}{{requirement.name}}: {{requirement.description}}</b></p>
+            <form> 
+                <label style="font-weight:normal">Date Completed: </label>
+                <input type="text" name="date" ng-show="!requirement.date" ng-model="requirement.newDate"></input>
+                <button class='send', ng-click="submitDate('Bear', scout.scout_id, requirement.dbID, requirement.newDate)" ng-show="!requirement.date">Submit</button>
+                <p ng-show="requirement.date"><em>{{requirement.date}}</em></p>
+            </form>
+            <br>
+        </div>
+    </div>
+</div>

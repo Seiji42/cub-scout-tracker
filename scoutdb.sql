@@ -19,6 +19,7 @@
 -- Table structure for table `activity`
 --
 
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `activity`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -28,6 +29,18 @@ CREATE TABLE `activity` (
   `requirement_id` int(10) unsigned NOT NULL,
   `activity_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`activity_id`)
+=======
+/*DROP TABLE IF EXISTS `achievement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+/*CREATE TABLE `achievement` (
+  `name` varchar(30) NOT NULL,
+  `description` varchar(30) NOT NULL,
+  `category_id` int(10) unsigned NOT NULL,
+  `num_electives` int(10) unsigned NOT NULL,
+  `achievement_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`achievement_id`)
+>>>>>>> dev
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -48,10 +61,22 @@ DROP TABLE IF EXISTS `adult`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `adult` (
+<<<<<<< HEAD
   `name` varchar(30) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(30) NOT NULL,
   `leader_type` varchar(30) DEFAULT NULL,
+=======
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `pack_number` varchar(30) NOT NULL,
+  `leader_type` varchar(30) DEFAULT NULL,
+  `rank_type` varchar(30) NULL,
+  `phone_number` varchar(30) NULL,
+  `email` varchar(30) NULL,
+>>>>>>> dev
   `adult_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`adult_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -70,6 +95,7 @@ UNLOCK TABLES;
 -- Table structure for table `category`
 --
 
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -77,6 +103,16 @@ CREATE TABLE `category` (
   `name` varchar(30) NOT NULL,
   `description` varchar(30) NOT NULL,
   `rank_id` int(10) unsigned NOT NULL,
+=======
+/*DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+/*CREATE TABLE `category` (
+  `name` varchar(30) NOT NULL,
+  `description` varchar(30) NOT NULL,
+  `rank_id` int(10) unsigned NOT NULL,
+  `num_achievments` int(10) unsigned NULL,
+>>>>>>> dev
   `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -86,7 +122,11 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
+<<<<<<< HEAD
 LOCK TABLES `category` WRITE;
+=======
+/*LOCK TABLES `category` WRITE;*/;
+>>>>>>> dev
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -110,7 +150,11 @@ CREATE TABLE `rank` (
 -- Dumping data for table `rank`
 --
 
+<<<<<<< HEAD
 LOCK TABLES `rank` WRITE;
+=======
+/*LOCK TABLES `rank` WRITE;*/
+>>>>>>> dev
 /*!40000 ALTER TABLE `rank` DISABLE KEYS */;
 /*!40000 ALTER TABLE `rank` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -123,8 +167,14 @@ DROP TABLE IF EXISTS `record`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `record` (
+<<<<<<< HEAD
   `record_type` varchar(30) NOT NULL,
   `type_id` int(10) unsigned NOT NULL,
+=======
+  `record_rank_type` varchar(30) NOT NULL,
+  `date_done` varchar(30) NOT NULL,
+  `requirement_id` int(10) unsigned NOT NULL,
+>>>>>>> dev
   `scout_id` int(10) unsigned NOT NULL,
   `record_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`record_id`)
@@ -135,7 +185,11 @@ CREATE TABLE `record` (
 -- Dumping data for table `record`
 --
 
+<<<<<<< HEAD
 LOCK TABLES `record` WRITE;
+=======
+/*LOCK TABLES `record` WRITE*/;
+>>>>>>> dev
 /*!40000 ALTER TABLE `record` DISABLE KEYS */;
 /*!40000 ALTER TABLE `record` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -144,6 +198,7 @@ UNLOCK TABLES;
 -- Table structure for table `requirement`
 --
 
+<<<<<<< HEAD
 DROP TABLE IF EXISTS `requirement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -151,6 +206,16 @@ CREATE TABLE `requirement` (
   `name` varchar(30) NOT NULL,
   `description` varchar(30) NOT NULL,
   `category_id` int(10) unsigned NOT NULL,
+=======
+/*DROP TABLE IF EXISTS `requirement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+/*CREATE TABLE `requirement` (
+  `name` varchar(30) NOT NULL,
+  `description` varchar(30) NOT NULL,
+  `achievement_id` int(10) unsigned NOT NULL,
+  `req_elec` varchar(30) NOT NULL,
+>>>>>>> dev
   `requirement_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`requirement_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -160,7 +225,11 @@ CREATE TABLE `requirement` (
 -- Dumping data for table `requirement`
 --
 
+<<<<<<< HEAD
 LOCK TABLES `requirement` WRITE;
+=======
+/*LOCK TABLES `requirement` WRITE*/;
+>>>>>>> dev
 /*!40000 ALTER TABLE `requirement` DISABLE KEYS */;
 /*!40000 ALTER TABLE `requirement` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -173,9 +242,17 @@ DROP TABLE IF EXISTS `scout`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `scout` (
+<<<<<<< HEAD
   `name` varchar(30) NOT NULL,
   `birth_date` varchar(30) NOT NULL,
   `group_name` varchar(30) NOT NULL,
+=======
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `birth_date` varchar(30) NOT NULL,
+  `pack_number` varchar(30) NOT NULL,
+  `rank_type` varchar(30) NOT NULL,
+>>>>>>> dev
   `parent_id` int(10) unsigned DEFAULT NULL,
   `leader_id` int(10) unsigned DEFAULT NULL,
   `scout_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -187,7 +264,11 @@ CREATE TABLE `scout` (
 -- Dumping data for table `scout`
 --
 
+<<<<<<< HEAD
 LOCK TABLES `scout` WRITE;
+=======
+/*LOCK TABLES `scout` WRITE*/;
+>>>>>>> dev
 /*!40000 ALTER TABLE `scout` DISABLE KEYS */;
 /*!40000 ALTER TABLE `scout` ENABLE KEYS */;
 UNLOCK TABLES;
