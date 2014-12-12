@@ -696,6 +696,7 @@ function selectScout(id, connection, achievements, cb)
 			}
 			else
 			{
+
 				s_result = rows[0];
 				r_result = rows[1];
 
@@ -703,71 +704,78 @@ function selectScout(id, connection, achievements, cb)
 				//console.log(r_result[0].record_rank_type);
 
 				//console.log(r_result);
-				rank_id = 1;
-				if(s_result.rank_type == 'Bear')
+				var rank_id = "";
+				if(s_result[0].rank_type === 'Bear')
 				{
-					//rank_id = 2;
+					rank_id = 2;
+				}
+				else if(s_result[0].rank_type === 'Wolf')
+				{
+					rank_id = 1;
 				}
 				
 				if(r_result == undefined)
 				{
+					//Do nothing - we should have never gotten to this point
 				}
 				else if(rank_id == 1)
 				{
 					//GET WOLF RECORD DATES
 					for(var i = 0; i < r_result.length; i++)
 					{
+
 						if(r_result[i].requirement_id < 13)
 						{
-							achievements.wolf[0].requirements[r_result[i].requirement_id].date = r_result[i].date_done;
+							achievements.wolf[0].requirements[r_result[i].requirement_id-1].date = r_result[i].date_done;
+
 						}
 						else if(r_result[i].requirement_id < 20)
 						{
-							achievements.wolf[1].requirements[r_result[i].requirement_id-13].date = r_result[i].date_done;
+							achievements.wolf[1].requirements[r_result[i].requirement_id-14].date = r_result[i].date_done;
 						}
 						else if(r_result[i].requirement_id < 23)
 						{
-							achievements.wolf[2].requirements[r_result[i].requirement_id-20].date = r_result[i].date_done;
+							achievements.wolf[2].requirements[r_result[i].requirement_id-21].date = r_result[i].date_done;
 						
 						}
 						else if(r_result[i].requirement_id < 29)
 						{
-							achievements.wolf[3].requirements[r_result[i].requirement_id-23].date = r_result[i].date_done;
+							achievements.wolf[3].requirements[r_result[i].requirement_id-24].date = r_result[i].date_done;
 						}
 						else if(r_result[i].requirement_id < 34)
 						{
-							achievements.wolf[4].requirements[r_result[i].requirement_id-29].date = r_result[i].date_done;
+							achievements.wolf[4].requirements[r_result[i].requirement_id-30].date = r_result[i].date_done;
 						
 						}
 						else if(r_result[i].requirement_id < 37)
 						{
-							achievements.wolf[5].requirements[r_result[i].requirement_id-34].date = r_result[i].date_done;
+							achievements.wolf[5].requirements[r_result[i].requirement_id-35].date = r_result[i].date_done;
 						}
 						else if(r_result[i].requirement_id < 43)
 						{
-							achievements.wolf[6].requirements[r_result[i].requirement_id-37].date = r_result[i].date_done;
+							achievements.wolf[6].requirements[r_result[i].requirement_id-38].date = r_result[i].date_done;
 						}
 						else if(r_result[i].requirement_id < 48)
 						{
-							achievements.wolf[7].requirements[r_result[i].requirement_id-43].date = r_result[i].date_done;
+							achievements.wolf[7].requirements[r_result[i].requirement_id-44].date = r_result[i].date_done;
 						}
 						else if(r_result[i].requirement_id < 53)
 						{
-							achievements.wolf[8].requirements[r_result[i].requirement_id-48].date = r_result[i].date_done;
+							achievements.wolf[8].requirements[r_result[i].requirement_id-49].date = r_result[i].date_done;
 						}
 						else if(r_result[i].requirement_id < 60)
 						{
-							achievements.wolf[9].requirements[r_result[i].requirement_id-53].date = r_result[i].date_done;
+							achievements.wolf[9].requirements[r_result[i].requirement_id-54].date = r_result[i].date_done;
 						
 						}
 						else if(r_result[i].requirement_id < 64)
 						{
-							achievements.wolf[10].requirements[r_result[i].requirement_id-60].date = r_result[i].date_done;
+							achievements.wolf[10].requirements[r_result[i].requirement_id-61].date = r_result[i].date_done;
 						
 						}
 						else if(r_result[i].requirement_id < 75)
 						{
-							achievements.wolf[11].requirements[r_result[i].requirement_id-64].date = r_result[i].date_done;
+							achievements.wolf[11].requirements[r_result[i].requirement_id-65].date = r_result[i].date_done;
 						
 						}
 
@@ -777,11 +785,9 @@ function selectScout(id, connection, achievements, cb)
 				{
 					//GET BEAR RECORDS
 				}
-
-				//console.log(s_result);
-
 				ans = {first_name : s_result[0]. first_name, last_name : s_result[0].last_name, rank : s_result[0].rank_type, ach : achievements, status : "OK"};
 				
+							//console.log(ans.ach.wolf[0].requirements[0]);
 				/*
 				console.log(ans.ach.wolf[0].requirements[0].description);
 				console.log("PRINTING SELECT SCOUT RESULTS");

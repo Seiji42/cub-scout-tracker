@@ -34,7 +34,7 @@ angular.module('cubScoutTrackerApp')
             //pack_number: $scope.currentUser.pack_number,
             //parent_id: $scope.currentUser.adult_id
             leader_type: "leader",
-            rank_type: "Wolf",
+            rank_type: "Bear",
             pack_number: "752",
             parent_id: null
         };

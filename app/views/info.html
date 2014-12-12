@@ -15,9 +15,9 @@
         <p><b>{{category.num}}{{requirement.name}}: {{ requirement.description}}</b></p>
         <form> 
             <label style="font-weight:normal">Date Completed: </label>
-            <input type="text" name="date" ng-show="!requirement.date_completed" ng-model="requirement.completion_date"></input>
-            <button class='send', ng-click="submitDate('Wolf', scout.scout_id, requirement.dbID, requirement.completion_date)" ng-show="!requirement.date_completed">Submit</button>
-            <p ng-show="requirement.date_completed"><em>{{requirement.completion_date}}</em></p>
+            <input type="text" name="date" ng-show="!requirement.date" ng-model="requirement.completion_date"></input>
+            <button class='send', ng-click="submitDate('Wolf', scout.scout_id, requirement.dbID, requirement.date)" ng-show="!requirement.date">Submit</button>
+            <p ng-show="requirement.date"><em>{{requirement.date}}</em></p>
         </form>
         <br>
     </div>
@@ -33,8 +33,9 @@
             <p><b>{{achievement.num}}{{requirement.name}}: {{requirement.description}}</b></p>
             <form> 
                 <label style="font-weight:normal">Date Completed: </label>
-                <input type="text" name="date" ng-show="!requirement.date_completed"></input>
-                <p ng-show="requirement.date_completed"><em>{{requirement.completion_date}}</em></p>
+                <input type="text" name="date" ng-show="!requirement.date" ng-model="requirement.completion_date"></input>
+                <button class='send', ng-click="submitDate('Wolf', scout.scout_id, requirement.dbID, requirement.date)" ng-show="!requirement.date">Submit</button>
+                <p ng-show="requirement.date"><em>{{requirement.date}}</em></p>
             </form>
             <br>
         </div>
