@@ -8,13 +8,20 @@
  * Controller of the cubScoutTrackerApp
  */
 angular.module('cubScoutTrackerApp')
-  .controller('InfoCtrl', ['$scope', '$window', 'CurrentLoginService', 'ViewScoutsService', function ($scope, $window, CurrentLoginService, ViewScoutsService) {
+  .controller('InfoCtrl', ['$scope', '$window', 'CurrentLoginService', 'ViewScoutsService', 'ScoutInfoService', function ($scope, $window, CurrentLoginService, ViewScoutsService, ScoutInfoService) {
     $scope.scoutList = [];
     $scope.currentUser = CurrentLoginService.getCurrentUser();
-    console.log($scope.currentUser);
+
+    //console.log($scope.currentUser);
 
     $scope.changeScout = function(scoutId) {
-        $scope.scout = FakeData.getAchievements(scoutId);
+        var toSend = {id: scoutId};
+        ScoutInfoService.save(toSend, function(result) {
+            if(result.status == "OK") {
+                $scope.scout = result;
+                console.log($scope.scout);
+            }
+        });
     }
 
     $scope.getScouts = function() {
@@ -24,11 +31,15 @@ angular.module('cubScoutTrackerApp')
             rank_type: $scope.currentUser.rank_type,
             pack_number: $scope.currentUser.pack_number,
             parent_id: $scope.currentUser.adult_id
+            //leader_type: "leader",
+            //rank_type: "Bear",
+            //pack_number: "752",
+            //parent_id: null
         };
         ViewScoutsService.save(toSend, function(result) {
             if(result.status == "OK")
             {
-                console.log("We're good!");
+                $scope.scoutList = result.scout;
             }
             else
             {
@@ -37,7 +48,6 @@ angular.module('cubScoutTrackerApp')
         });
     }
 
-    $scope.scoutList = $scope.getScouts();
-    console.log($scope.scoutList);
+    $scope.getScouts();
 
   }]);

@@ -709,7 +709,7 @@ function selectScout(id, connection, achievements, cb)
 					//rank_id = 2;
 				}
 				
-				if(r.result == undefined)
+				if(r_result == undefined)
 				{
 				}
 				else if(rank_id == 1)

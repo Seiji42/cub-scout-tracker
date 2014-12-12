@@ -2,18 +2,23 @@
       Register New Scout
     </a>
 
+<button class='tab', ng-repeat='scout in scoutList' ng-click='changeScout(scout.scout_id)'>{{scout.first_name}} {{scout.last_name}}</button>
 
-{{scoutList}}
-<button class='tab', ng-repeat='scout in scoutList.scouts' ng-click='changeScout(scout.id)'>{{scout.name}} </button>
+<br>
 
+<div ng-repeat="category in scout.ach.wolf" ng-show="scout.rank == 'Wolf'">
+    {{category.name}}
+    <div ng-repeat="requirement in category.requirements">
+        {{category.num}}{{requirement.name}} {{ requirement.description}}  {{requirement.comletion_date}}
+    </div>
+</div>
 
-
-<div ng-repeat="category in scout.categories">
-    {{"Item" + $index}}
-    <div ng-repeat="achievement in category.achievements">
-        {{achievement.id}}
+<div ng-repeat="category in scout.ach.bear" ng-show="scout.rank == 'Bear'">
+    {{category.Name}}
+    <div ng-repeat="achievement in category.Achievements">
+        {{achievement.name}}
         <div ng-repeat="requirement in achievement.requirements">
-            {{requirement.id}}  {{requirement.completion_date}}
+            {{achievement.num}}{{requirement.name}}  {{requirement.description}}  {{requirement.completion_date}}
         </div>
     </div>
 </div>

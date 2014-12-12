@@ -204,4 +204,7 @@ factory('VerifyUserService', ['$resource', function($resource) {
 }]).
 factory('ViewScoutsService', ['$resource', function($resource) {
     return $resource('http://localhost:8084/scoutstoselect', {});
+}]).
+factory('ScoutInfoService', ['$resource', function($resource) {
+    return $resource('http://localhost:8084/scoutinfo', {});
 }]);
