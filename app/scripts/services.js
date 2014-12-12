@@ -1,3 +1,5 @@
+var url = 'http://localhost:8084';//'http://something-x3ro.rhcloud.com'
+
 angular.module('cubScoutTrackerApp').
 factory('FakeData', [ function() {
     var mainInfoBob = {
@@ -182,32 +184,32 @@ factory('CurrentLoginService', [ function() {
     }
 }]).
 factory('GetScoutNoParentService', ['$resource', function($resource) {
-    return $resource('http://localhost:8084/scoutswithnoparent', {});
+    return $resource(url + '/scoutswithnoparent', {});
 }]).
 factory('RegisterScoutService', ['$resource', function($resource) {
-    return $resource('http://localhost:8084/registerscout', {});
+    return $resource(url + '/registerscout', {});
 }]).
 factory('RegisterAdultService', ['$resource', function($resource) {
-    return $resource('http://localhost:8084/registeradult', {});
+    return $resource(url + '/registeradult', {});
 }]).
 factory('AddParentIDService', ['$resource', function($resource) {
-    return $resource('http://localhost:8084/addparent_id', {});
+    return $resource(url + '/addparent_id', {});
 }]).
 factory('UpdateScoutLeaderService', ['$resource', function($resource) { 
-    return $resource('http://localhost:8084/updatescoutleader', {});
+    return $resource(url + '/updatescoutleader', {});
 }]).
 factory('GetLeaderService', ['$resource', function($resource) {
-    return $resource('http://localhost:8084/getleader', {});
+    return $resource(url + '/getleader', {});
 }]).
 factory('VerifyUserService', ['$resource', function($resource) {
-    return $resource('http://localhost:8084/verifypassword', {});
+    return $resource(url + '/verifypassword', {});
 }]).
 factory('ViewScoutsService', ['$resource', function($resource) {
-    return $resource('http://localhost:8084/scoutstoselect', {});
+    return $resource(url + '/scoutstoselect', {});
 }]).
 factory('ScoutInfoService', ['$resource', function($resource) {
-    return $resource('http://localhost:8084/scoutinfo', {});
+    return $resource(url + '/scoutinfo', {});
 }]).
 factory('SubmitDateService', ['$resource', function($resource) {
-    return $resource('http://localhost:8084/addrecord', {});
+    return $resource(url + '/addrecord', {});
 }]);
