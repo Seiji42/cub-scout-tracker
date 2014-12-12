@@ -1,8 +1,9 @@
 var debug = true;
+var achieve;
 
 function createAchievements()
 {
-	var achieve = { wolf : [], bear : []};
+	achieve = { wolf : [], bear : []};
 
 	achievement0 = {name: "Feats of Skill", num : 1, requirements : [], 			numelec: 1};
 	
@@ -700,6 +701,7 @@ function selectScout(id, connection, achievements, cb)
 				s_result = rows[0];
 				r_result = rows[1];
 
+				console.log(r_result);
 				//console.log(s_result[0].first_name);
 				//console.log(r_result[0].record_rank_type);
 
@@ -715,9 +717,16 @@ function selectScout(id, connection, achievements, cb)
 				}
 				var achievements2 = {};
 				
-				if(r_result == undefined)
+				if(r_result === undefined)
 				{
-					//Do nothing - we should have never gotten to this point
+					if(rank_id == 1)
+					{
+						achievements2 = achievements.wolf;
+					}
+					else if(rank_id == 2)
+					{
+						achievements2 = achievements.bear;
+					}
 				}
 				else if(rank_id == 1)
 				{
@@ -1177,13 +1186,15 @@ var server = http.createServer(function(req, res)
 	{
 		var info;
 		var ans2;
+		createAchievements();
 		a = achieve;
+		console.log(achieve.bear[0].achievements[0].requirements[0]);
 		req.on('data' , function(chunk){
 			//console.log(chunk.toString());
 			info = JSON.parse(chunk);
 			//console.log("CHECK: " + info.id);
 			
-			console.log(info);
+			//console.log(info);
 			res.writeHead(200);
 			selectScout(info.id, connection, a, function(err, ans)
 			{
