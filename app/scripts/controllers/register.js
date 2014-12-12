@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cubScoutTrackerApp')
-  .controller('RegisterCtrl', ['$scope', '$window', 'GetScoutNoParentService', 'RegisterAdultService', 'AddParentIDService', 'UpdateScoutLeaderService', function ($scope, $window, GetScoutNoParentService, RegisterAdultService, AddParentIDService, UpdateScoutLeaderService) {
+  .controller('RegisterCtrl', ['$scope', '$location', '$window', 'GetScoutNoParentService', 'VerifyUserService','RegisterAdultService', 'AddParentIDService', 'UpdateScoutLeaderService', 'CurrentLoginService', function ($scope, $location, $window, GetScoutNoParentService, VerifyUserService, RegisterAdultService, AddParentIDService, UpdateScoutLeaderService, CurrentLoginService) {
     $scope.username = "";
     $scope.password = "";
     $scope.confirmPass = "";
@@ -134,6 +134,19 @@ angular.module('cubScoutTrackerApp')
                         };
                         AddParentIDService.save(scoutToSend, function(result) {
                             console.log("Parent assigned to " + scoutToSend.first_name);
+                            var toSend = {
+                              username: $scope.username,
+                              password: $scope.password
+                            };
+                            VerifyUserService.save(toSend, function(result) {
+                              if(result.status === 'OK') {
+                                CurrentLoginService.setCurrentUser(result);
+                                $location.path('/info');
+                              }
+                              else {
+                                $scope.user.message = "Invalid username or password"
+                              }
+                            });
                         });
                     }
                 }
@@ -157,6 +170,19 @@ angular.module('cubScoutTrackerApp')
                             };
                             UpdateScoutLeaderService.save(scoutToSend, function(result) {
                                 console.log("Parent assigned to " + scoutToSend.first_name);
+                                var toSend = {
+                                  username: $scope.username,
+                                  password: $scope.password
+                                };
+                                VerifyUserService.save(toSend, function(result) {
+                                  if(result.status === 'OK') {
+                                    CurrentLoginService.setCurrentUser(result);
+                                    $location.path('/info');
+                                  }
+                                  else {
+                                    $scope.user.message = "Invalid username or password"
+                                  }
+                                });
                             });
                         }
                     }
@@ -165,8 +191,6 @@ angular.module('cubScoutTrackerApp')
             else
                 $window.alert("There was an error registering with that username.  Please try a different username");
         });
-        console.log($scope.selectedScouts);
-        //this will later connect to the database and add the new information
     };
 
   }]);

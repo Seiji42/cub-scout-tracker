@@ -56,7 +56,7 @@ angular.module('cubScoutTrackerApp')
                     console.log("Leader assigned to " + scoutToSend.first_name);
                 });
 
-                //$location.path("/info");
+                $location.path("/info");
             }
             else
                 $window.alert("There was an error registering the new scout.  Please try again.");
