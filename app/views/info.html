@@ -1,24 +1,40 @@
-<a class="btn btn-lg" ng-href="#/newscout" ng-show="currentUser.leader_type === 'leader'">
+<div class="registerNewScout" ng-show="currentUser.leader_type === 'leader'">
+<a class="btn btn-lg" ng-href="#/newscout">
       Register New Scout
     </a>
+</div>
+<br>
 
 <button class='tab', ng-repeat='scout in scoutList' ng-click='changeScout(scout.scout_id)'>{{scout.first_name}} {{scout.last_name}}</button>
 
 <br>
 
 <div ng-repeat="category in scout.ach.wolf" ng-show="scout.rank == 'Wolf'">
-    {{category.name}}
+    <br>
+    <p><b><u>{{category.name}}</u></b></p>
     <div ng-repeat="requirement in category.requirements">
-        {{category.num}}{{requirement.name}} {{ requirement.description}}  {{requirement.comletion_date}}
+        <p><b>{{category.num}}{{requirement.name}}: {{ requirement.description}}</b></p>
+        <div> 
+            <label style="font-weight:normal">Date Completed: </label>
+            <input type="text" name="date" ng-show="!requirement.date_completed"></input>
+            <p ng-show="requirement.date_completed"><em>{{requirement.completion_date}}</em></p>
+        </div>
     </div>
 </div>
 
 <div ng-repeat="category in scout.ach.bear" ng-show="scout.rank == 'Bear'">
-    {{category.Name}}
+    <br><br>
+    <p><b><em>***{{category.Name}}***</em></b></p>
     <div ng-repeat="achievement in category.Achievements">
-        {{achievement.name}}
+        <br>
+        <p><b><u>{{achievement.name}}</u></b></p>
         <div ng-repeat="requirement in achievement.requirements">
-            {{achievement.num}}{{requirement.name}}  {{requirement.description}}  {{requirement.completion_date}}
+            <p><b>{{achievement.num}}{{requirement.name}}: {{requirement.description}}</b></p>
+            <div> 
+                <label style="font-weight:normal">Date Completed: </label>
+                <input type="text" name="date" ng-show="!requirement.date_completed"></input>
+                <p ng-show="requirement.date_completed"><em>{{requirement.completion_date}}</em></p>
+            </div>
         </div>
     </div>
 </div>

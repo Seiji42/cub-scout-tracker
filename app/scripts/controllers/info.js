@@ -27,14 +27,14 @@ angular.module('cubScoutTrackerApp')
     $scope.getScouts = function() {
         var toSend;
         toSend = {
-            leader_type: $scope.currentUser.leader_type,
-            rank_type: $scope.currentUser.rank_type,
-            pack_number: $scope.currentUser.pack_number,
-            parent_id: $scope.currentUser.adult_id
-            //leader_type: "leader",
-            //rank_type: "Bear",
-            //pack_number: "752",
-            //parent_id: null
+            //leader_type: $scope.currentUser.leader_type,
+            //rank_type: $scope.currentUser.rank_type,
+            //pack_number: $scope.currentUser.pack_number,
+            //parent_id: $scope.currentUser.adult_id
+            leader_type: "leader",
+            rank_type: "Bear",
+            pack_number: "752",
+            parent_id: null
         };
         ViewScoutsService.save(toSend, function(result) {
             if(result.status == "OK")
