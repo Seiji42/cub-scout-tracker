@@ -8,7 +8,7 @@
  * Controller of the cubScoutTrackerApp
  */
 angular.module('cubScoutTrackerApp')
-  .controller('MainCtrl', ['$scope', '$location', 'FakeData', 'VerifyUserService', function ($scope, $location, FakeData, VerifyUserService) {
+  .controller('MainCtrl', ['$scope', '$location', 'CurrentLoginService', 'VerifyUserService', function ($scope, $location, CurrentLoginService, VerifyUserService) {
   	$scope.user = {
   		username:'',
   		password:'',
@@ -24,6 +24,7 @@ angular.module('cubScoutTrackerApp')
         };
         VerifyUserService.save(toSend, function(result) {
           if(result.status === 'OK') {
+            CurrentLoginService.setCurrentUser(result);
             $location.path('/info');
           }
           else {

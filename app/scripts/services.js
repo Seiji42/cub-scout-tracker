@@ -168,6 +168,19 @@ factory('FakeData', [ function() {
         }
     };
 }]).
+factory('CurrentLoginService', [ function() {
+    var currentUser = {};
+
+    return {
+        getCurrentUser: function() {
+            return currentUser;
+        },
+        setCurrentUser: function(user) {
+            currentUser = user.adult;
+            return;
+        }
+    }
+}]).
 factory('GetScoutNoParentService', ['$resource', function($resource) {
     return $resource('http://localhost:8084/scoutswithnoparent', {});
 }]).
@@ -188,4 +201,7 @@ factory('GetLeaderService', ['$resource', function($resource) {
 }]).
 factory('VerifyUserService', ['$resource', function($resource) {
     return $resource('http://localhost:8084/verifypassword', {});
+}]).
+factory('ViewScoutsService', ['$resource', function($resource) {
+    return $resource('http://localhost:8084/scoutstoselect', {});
 }]);

@@ -104,7 +104,7 @@ angular.module('cubScoutTrackerApp')
             last_name: $scope.lastName,
             username: $scope.username,
             password: $scope.password,
-            leader_type: "adult",
+            leader_type: "parent",
             rank_type: "",
             phone_number: "",
             email: $scope.email,
