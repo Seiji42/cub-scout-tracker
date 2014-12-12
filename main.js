@@ -678,6 +678,7 @@ function getleader(rank, packNum, connection, cb)
 
 function selectScout(id, connection, achievements, cb)
 {
+	console.log(id);
 	var strQuery = "SELECT * FROM scout WHERE scout_id = " + id;
 	var strQuery2 = "SELECT * FROM record WHERE scout_id = " + id;
 	//rows2 = {};
@@ -687,7 +688,6 @@ function selectScout(id, connection, achievements, cb)
 			throw err;
 		}else
 		{
-
 			if(rows[0][0] == undefined)
 			{
 				console.log("No SCOUT EXISTS");
@@ -713,7 +713,6 @@ function selectScout(id, connection, achievements, cb)
 				{
 					rank_id = 1;
 				}
-
 				var achievements2 = {};
 				
 				if(r_result == undefined)
@@ -1184,8 +1183,9 @@ var server = http.createServer(function(req, res)
 			info = JSON.parse(chunk);
 			//console.log("CHECK: " + info.id);
 			
+			console.log(info);
 			res.writeHead(200);
-			selectScout(info.scout_id, connection, a, function(err, ans)
+			selectScout(info.id, connection, a, function(err, ans)
 			{
 			console.log("PRINTING SELECT SCOUT RESULTS");
 			console.log(ans.first_name + ans.last_name + ans.rank);

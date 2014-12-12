@@ -8,7 +8,7 @@
 <button class='tab', ng-repeat='scout in scoutList' ng-click='changeScout(scout.scout_id)'>{{scout.first_name}} {{scout.last_name}}</button>
 
 <br>
-<div ng-repeat="category in scout.ach.wolf" ng-show="scout.rank == 'Wolf'">
+<div ng-repeat="category in scout.ach" ng-show="scout.rank == 'Wolf'">
     <br>
     <p><b><u>{{category.name}}</u></b></p>
     <div ng-repeat="requirement in category.requirements">
@@ -23,10 +23,10 @@
     </div>
 </div>
 
-<div ng-repeat="category in scout.ach.bear" ng-show="scout.rank == 'Bear'">
+<div ng-repeat="category in scout.ach" ng-show="scout.rank == 'Bear'">
     <br><br>
     <p><b><em>***{{category.Name}}***</em></b></p>
-    <div ng-repeat="achievement in category.Achievements">
+    <div ng-repeat="achievement in category.achievements">
         <br>
         <p><b><u>{{achievement.name}}</u></b></p>
         <div ng-repeat="requirement in achievement.requirements">
