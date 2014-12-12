@@ -351,14 +351,14 @@ achievement11 = {name: "Making Choices", num : 12, requirements:[], 			numelec: 
 	array_BearAchievements2=[achievementB3, achievementB4,achievementB5,achievementB6,achievementB7];
 	array_BearAchievements3=[achievementB8,achievementB9,achievementB10,achievementB11,achievementB12,achievementB13];
 	array_BearAchievements4=[achievementB14,achievementB15,achievementB16,achievementB17,achievementB18,achievementB19,achievementB20,achievementB21,achievementB22,achievementB23,achievementB24];
-	CategoryB1 = {Name: "GOD",     Achievements: array_BearAchievements1,numelec: 1};
-	CategoryB2 = {Name: "COUNTRY", Achievements: array_BearAchievements2,numelec: 3};
-	CategoryB3 = {Name: "FAMILY",  Achievements: array_BearAchievements3,numelec: 4};
-	CategoryB4 = {Name: "SELF",    Achievements: array_BearAchievements4,numelec: 4};
+	CategoryB1 = {Name: "GOD",     achievements: array_BearAchievements1,numelec: 1};
+	CategoryB2 = {Name: "COUNTRY", achievements: array_BearAchievements2,numelec: 3};
+	CategoryB3 = {Name: "FAMILY",  achievements: array_BearAchievements3,numelec: 4};
+	CategoryB4 = {Name: "SELF",    achievements: array_BearAchievements4,numelec: 4};
 	
-	Categories=[CategoryB1,CategoryB2,CategoryB3,CategoryB4];
+	categories=[CategoryB1,CategoryB2,CategoryB3,CategoryB4];
 	
-	achieve.bear=Categories;
+	achieve.bear=categories;
 	
 	
 	
@@ -679,7 +679,7 @@ function getleader(rank, packNum, connection, cb)
 function selectScout(id, connection, achievements, cb)
 {
 	var strQuery = "SELECT * FROM scout WHERE scout_id = " + id;
-	var strQuery2 = "SELECT * FROM record";
+	var strQuery2 = "SELECT * FROM record WHERE scout_id = " + id;
 	//rows2 = {};
 	connection.query( strQuery + "; " + strQuery2, function(err, rows)
 	{
@@ -713,6 +713,8 @@ function selectScout(id, connection, achievements, cb)
 				{
 					rank_id = 1;
 				}
+
+				var achievements2 = {};
 				
 				if(r_result == undefined)
 				{
@@ -723,7 +725,7 @@ function selectScout(id, connection, achievements, cb)
 					//GET WOLF RECORD DATES
 					for(var i = 0; i < r_result.length; i++)
 					{
-
+						
 						if(r_result[i].requirement_id < 13)
 						{
 							achievements.wolf[0].requirements[r_result[i].requirement_id-1].date = r_result[i].date_done;
@@ -780,12 +782,144 @@ function selectScout(id, connection, achievements, cb)
 						}
 
 					}
+
+					achievements2 = achievements.wolf;
 				}
-				else
+				else if (rank_id == 2)
 				{
-					//GET BEAR RECORDS
+					//GET BEAR RECORD DATES
+					for(var i = 0; i < r_result.length; i++)
+					{
+						if(r_result[i].requirement_id < 75)
+						{
+						}
+						else if(r_result[i].requirement_id < 77)
+						{
+							achievements.bear[0].achievements[0].requirements[r_result[i].requirement_id-75].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 78)
+						{
+							achievements.bear[0].achievements[1].requirements[r_result[i].requirement_id-77].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 88)
+						{
+							achievements.bear[1].achievements[0].requirements[r_result[i].requirement_id-78].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 91)
+						{
+							achievements.bear[1].achievements[1].requirements[r_result[i].requirement_id-88].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 96)
+						{
+							achievements.bear[1].achievements[2].requirements[r_result[i].requirement_id-91].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 103)
+						{
+							achievements.bear[1].achievements[3].requirements[r_result[i].requirement_id-96].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 109)
+						{
+							achievements.bear[1].achievements[4].requirements[r_result[i].requirement_id-103].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 116)
+						{
+							achievements.bear[2].achievements[0].requirements[r_result[i].requirement_id-109].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 123)
+						{
+							achievements.bear[2].achievements[1].requirements[r_result[i].requirement_id-116].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 125)
+						{
+							achievements.bear[2].achievements[2].requirements[r_result[i].requirement_id-123].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 132)
+						{
+							achievements.bear[2].achievements[3].requirements[r_result[i].requirement_id-125].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 137)
+						{
+							achievements.bear[2].achievements[4].requirements[r_result[i].requirement_id-132].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 144)
+						{
+							achievements.bear[2].achievements[5].requirements[r_result[i].requirement_id-137].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 151)
+						{
+							achievements.bear[3].achievements[0].requirements[r_result[i].requirement_id-144].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 154)
+						{
+							achievements.bear[3].achievements[1].requirements[r_result[i].requirement_id-151].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 157)
+						{
+							achievements.bear[3].achievements[2].requirements[r_result[i].requirement_id-154].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 163)
+						{
+							achievements.bear[3].achievements[3].requirements[r_result[i].requirement_id-157].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 171)
+						{
+							achievements.bear[3].achievements[4].requirements[r_result[i].requirement_id-163].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 175)
+						{
+							achievements.bear[3].achievements[5].requirements[r_result[i].requirement_id-171].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 178)
+						{
+							achievements.bear[3].achievements[6].requirements[r_result[i].requirement_id-175].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 185)
+						{
+							achievements.bear[3].achievements[7].requirements[r_result[i].requirement_id-178].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 191)
+						{
+							achievements.bear[3].achievements[8].requirements[r_result[i].requirement_id-185].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 197)
+						{
+							achievements.bear[3].achievements[9].requirements[r_result[i].requirement_id-191].date = r_result[i].date_done;
+
+						}
+						else if(r_result[i].requirement_id < 202)
+						{
+							achievements.bear[3].achievements[10].requirements[r_result[i].requirement_id-197].date = r_result[i].date_done;
+
+						}
+
+					}
+
+					achievements2 = achievements.bear;
+		
 				}
-				ans = {first_name : s_result[0]. first_name, last_name : s_result[0].last_name, rank : s_result[0].rank_type, ach : achievements, status : "OK"};
+				ans = {first_name : s_result[0]. first_name, last_name : s_result[0].last_name, rank : s_result[0].rank_type, ach : achievements2, status : "OK"};
 				
 							//console.log(ans.ach.wolf[0].requirements[0]);
 				/*
@@ -1051,7 +1185,7 @@ var server = http.createServer(function(req, res)
 			//console.log("CHECK: " + info.id);
 			
 			res.writeHead(200);
-			selectScout(info.id, connection, a, function(err, ans)
+			selectScout(info.scout_id, connection, a, function(err, ans)
 			{
 			console.log("PRINTING SELECT SCOUT RESULTS");
 			console.log(ans.first_name + ans.last_name + ans.rank);
